@@ -13,3 +13,12 @@
     3. 由于这只是个API，图形化界面调用暂定使用以下平台来使用
 
 林乐天的协助平台，https://tools.birdy02.com，将会开发一个 api 更换功能
+
+## 文件说明
+    Append_User.py 文件用来新增用户，用户信息需要在文件中修改
+    test.py 可以看到平台中有的漏洞数量和漏洞类型有哪些
+
+
+## 联系我
+如果有好的建议或者一起更新，请联系我
+<img src="https://github.com/Lin-Letian/secAPI/blob/main/Config/WeChatCode.jpg">
