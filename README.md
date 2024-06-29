@@ -4,6 +4,7 @@
     
     这是一个 v1.2 版本，在这之前还有 Python+Sqlite3的 版本
     目前已经将代码迁移到Golang语言中，Python版本的更新将变得缓慢
+    程序在Linux下运行效果最佳、Windows中也可以正常使用
 
 ## 部署
     开发环境：Python 3.10.11 + MySQL 5.7
@@ -11,6 +12,7 @@
     1. 请在Config/__init__.py中配置好数据库配置信息
     2. 运行 python init.py 实现初始化
     3. 由于这只是个API，图形化界面调用暂定使用以下平台来使用
+    4. 运行这个程序，你只需要复制 run.sh 文件中的代码来运行即可
 
 林乐天的协助平台，https://tools.birdy02.com，将会开发一个 api 更换功能
 
