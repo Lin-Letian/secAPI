@@ -1,0 +1,32 @@
+{
+  "product": "Apache CouchDB",
+  "vul_name": "Apache CouchDB 未授权访问",
+  "type": "访问控制",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "Apache CouchDB /页面或_config页面存在未授权访问",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/_config"
+    },
+    "verify": {
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "_compact"
+        }
+      ]
+    }
+  }
+}

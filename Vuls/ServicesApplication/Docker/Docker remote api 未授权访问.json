@@ -1,0 +1,34 @@
+{
+  "product": "Docker remote api",
+  "vul_name": "Docker remote api 未授权访问",
+  "type": "访问控制",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "Docker daemon api是使用url代替命令行来操作docker，docker swarm 是docker下的集群管理工具，在开放2375端口来监听集群容器时，会调用这个api，可以执行docker命令，root权限启动docker情况下可直接可以控制服务器。",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "https://cloud.tencent.com/developer/article/1744943",
+  "fix": [
+    "简单粗暴的方法，对2375端口做网络访问控制，如ACL控制，或者访问规则；",
+    "修改docker swarm的认证方式，使用TLS认证：Overview Swarm with TLS 和 Configure Docker Swarm for TLS这两篇文档，说的是配置好TLS后，Docker CLI 在发送命令到docker daemon之前，会首先发送它的证书，如果证书是由daemon信任的CA所签名的，才可以继续执行。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/version"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "ApiVersion"
+        }
+      ]
+    }
+  }
+}

