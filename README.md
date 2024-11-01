@@ -23,7 +23,8 @@
 
 ## 联系我
 如果有好的建议或者一起更新，请联系我，备注 Github
-<img src="https://github.com/Lin-Letian/secAPI/blob/main/Config/WeChatCode.jpg">
+https://www.birdy02.com
+https://tools.birdy02.com
 
 # 说明图
 <img src="https://github.com/Lin-Letian/secAPI/blob/main/Config/secAPI.png">
