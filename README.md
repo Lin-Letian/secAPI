@@ -16,7 +16,7 @@
     3. 由于这只是个API，图形化界面调用暂定使用以下平台来使用
     4. 运行这个程序，你只需要复制 run.sh 文件中的代码来运行即可
 
-林乐天的协助平台，https://tools.birdy02.com，将会开发一个 api 更换功能
+林乐天的协助平台，[https://tools.birdy02.com](https://old-tools.birdy02.com/)，登录时更新api为本地搭建的api地址
 
 ## 文件说明
     Append_User.py 文件用来新增用户，用户信息需要在文件中修改
